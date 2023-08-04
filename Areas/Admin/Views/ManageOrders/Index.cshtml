@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model List<Order>
+
+
+<div class="container" style="flex:auto">
+
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+            @foreach (var d in Model)
+
+            {
+
+                <div class="good-name">
+                    <label>Name: @d.Id</label>
+
+                </div>
+                <div class="form-group">
+                    <label> User: @(d.User.Name+" " +d.User.LastName) </label>
+                </div>
+                <div class="form-group">
+                    Basket:<a asp-action="Show" asp-controller="Basket" asp-area="" asp-route-basket_id="@(d.BasketId)"> @(d.BasketId) </a>
+                </div>
+                <div class="form-group">
+                    Adress: @(d.Adress)
+                </div>
+                <div class="form-group">
+                    Status: @(d.Status)
+                </div>
+                <div class="form-group">
+                    Cost: @(d.Cost)
+                </div>
+                <a class="btn-sm btn-primary" asp-action="Update"
+                   asp-route-order_id=@d.Id> Update</a>
+
+                <a class="btn-sm btn-danger" asp-action="Delete"
+                   asp-route-order_id=@d.Id> Delete</a>
+
+
+            }
+        </div>
+
+    </div>
+</div>
+
+

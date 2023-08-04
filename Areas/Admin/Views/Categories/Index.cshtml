@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model List<Category>
+
+
+<div class="container" style="flex:auto">
+    <div class=" row">
+        <a class="btn-sm btn-outline-secondary" asp-controller="Categories" asp-action="Create"> Create new</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+            @foreach (var d in Model)
+
+            {
+
+                <div class="good-name">
+                    <label>Name: @d.Name</label>
+
+                </div>
+                <div class="good-price">
+                    <label> Parent Category: @d.ParentCategory.Name </label>
+                </div>
+
+                <a class="btn-sm btn-primary" asp-controller="Categories" asp-action="Update"
+                   asp-route-category_id=@d.Id> Update</a>
+
+                <a class="btn-sm btn-danger" asp-controller="Categories" asp-action="Delete"
+                   asp-route-category_id=@d.Id> Delete</a>
+
+
+            }
+        </div>
+
+    </div>
+</div>
+
+

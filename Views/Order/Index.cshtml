@@ -1,0 +1,86 @@
+﻿@model Order
+
+<h2> ORDER</h2>
+<style>
+    .form-row{
+        margin-bottom: 1.5vh;
+    }
+    .form-label{
+        width:80px;
+    }
+    .btn-primary{
+        border-radius: 5px;
+    }
+    h2 {
+        font-size: 2rem;
+        letter-spacing: -2px;
+        color: #3b79ce;
+        line-height: 2;
+        color: #3b79ce;
+        margin-bottom: 0px !important;
+    }
+    h4 {
+        color: #3b79ce;
+        margin-bottom:0px !important;
+    }
+    form-label input {
+        border: 2px solid #3191e6;
+        border-radius: 5px;
+    }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form asp-action="make" method="post">
+                <div asp-validation-summary="All"> </div>
+                <input asp-for="@Model.Cost" type="hidden" />
+                <div class="form-row">
+                    <div class="form-label">
+                        <label asp-for="@Model.User.Name"> </label>
+
+                    </div>
+                    <div>
+
+                        <input asp-for="@Model.User.Name" type="text" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-label">
+                        <label asp-for="@Model.User.LastName"> </label>
+
+                    </div>
+                    <div>
+
+                        <input asp-for="@Model.User.LastName" type="text" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-label">
+                        <label asp-for="@Model.Adress"> </label>
+
+                    </div>
+
+                    <div>
+
+                        <input asp-for="@Model.Adress" type="text" />
+                    </div>
+                </div>
+                <br/>
+                <div class="form-row">
+                    <div class="form-label"><h4 > Total: </h4></div>
+                    <div><h4> @Model.Cost </h4></div>
+                </div>
+                @if (Model.Cost <= 0m)
+                {
+                    <span> You cant make order, while you dont have good in basket!</span>
+                }
+                else
+                {
+                    <input class="btn btn-primary" type="submit" title="Buy" />
+                }
+            </form>
+        </div>
+
+    </div>
+</div>

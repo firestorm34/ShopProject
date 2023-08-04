@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Order
+
+
+<div class="container" style="flex:auto">
+
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+
+            <form method="post" asp-action="Update">
+                <h1> Change Order Status</h1>
+                <input type="hidden" asp-for="Id" />
+                <select asp-items="Html.GetEnumSelectList<Status>()" asp-for="Status"></select>
+                <div class="form-group">
+                    <input type="submit" value="Обновить" class="btn btn-outline-secondary" />
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+

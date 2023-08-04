@@ -1,0 +1,605 @@
+﻿
+@inject UnitOfWork unit
+
+@using ShopProject.TagHelpers;
+@{ 
+
+    var basket_amount = @unit.GetAmountOfGoodInBasket();
+    var liked_amount = @unit.GetAmountOfLikedGoods();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - ShopProject</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+    <header>
+
+
+
+
+
+        @*Nav bar*@
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm   border-bottom box-shadow mb-3">
+            <div class="container">
+                <div class="navbar nav-container justify-content-between">
+                    <ul class="navbar-nav " style="margin-right:15px !important; position:relative">
+
+                        <li> <a id="dropdown-close" >X</a></li>
+
+                        <li class="nav-item" id="dropdown-open">
+                            <a style="display: block; width: 32px;">
+
+                                <i style="color:grey;width: 32px;font-size: 36px;" class="fa fa-bars">
+                                </i>
+                            </a>
+                        </li>
+
+                        <li class="nav-item hide-li"><a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a></li>
+
+
+
+
+
+                        <li class="nav-item hide-li" style="position:relative;">
+                            <div class="adropdown  nav-link text-dark">
+                                <a class="adropbtn">
+                                    Catalog
+                                    <i class="fa fa-caret-down"></i>
+                                </a>
+                                <div class="adropdown-content">
+                                    <categories orientation=Horizontal></categories>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <div class="search-div">
+                        <form id="Search-form" method="post" style="width:100%;display: flex;/*! background: #f7f7f7; *//*! border-radius: 12px; *//*! border: none; *//*! transition: background .3s; *//*! Z-index: 2; */align-content: center;" action="/Good/Search">
+                            <input class="Search-input" type="text" placeholder="Search.." id="Search-input" style="border:none !important;flex-grow: 1;background: #f2f2f2;border-radius: 8px 0px 0px 8px;border: none;transition: background .3s;padding: 7px;padding-left: 14px;">
+                            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JLf8G04bNNMlgEuSY830Oquv3O0oiwt4NYnodC4pA1iJEoy2qXvEAYtJk29B1NskdMjO17GCJ80IRGttNRlPz5A0ENVoINjMK4NqzGFkZj4iQzSaEjEBA0djLtoEvufOnfsBjKHW5nsIQQqiOyQGSLkdUXVJzWOnNa-onSfYN3QJ1J2D-MctiWi1rlswrsJxA"><div style="border-radius: 0px 8px 8px 0px;background: #f2f2f2 !important;position: relative;flex-basis: 39px;min-width: 25px;padding-right: 14px !important;">
+
+                                <a id="input-anchor" style="width: 60%;height: 60%;display: inline-block;position: absolute;transform: translate(-50%,-50%);left: 50%;top: 50%;">
+                                    <svg width="17" height="17" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.336 13.335L18 18m-2.665-9.494a6.828 6.828 0 11-13.656 0 6.828 6.828 0 0113.656 0z" stroke="#AFAFAF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+
+
+                                        </path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="navbar-nav account-ul" style="position: relative;">
+                        <div class="account-block" >
+                            <a class="account-desk-a"> First </a>
+                            <a class="account-desk-a"> First </a>
+                            <a class="account-desk-a"> First </a>
+                        </div>
+                        @if (User.Identity.IsAuthenticated == true)
+                        {
+                            <li class="nav-item">
+                                <a asp-action="Index" class="nav-link text-dark"
+                                   asp-controller="Basket">Basket <img src="~/basket.svg" style="width:20px; height:20px;" />: @basket_amount </a>
+                            </li>
+                            <li class="nav-item hide-li">
+                                <a class="nav-link text-dark" asp-area=""
+                                   asp-controller="LikedGood" asp-action="Index"><img src="~/liked.svg" style="width:20px; height:20px;" />:@liked_amount</a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated == false)
+                        {
+                            <li class=" nav-item hide-li">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">
+                                    Login
+                                    <img src="~/account.svg" style="width:20px; height:20px;" />
+                                </a>
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated == true)
+                        {
+                            <li class="account-show nav-item hide-li" style="z-index:4;">
+                                <a class="nav-link text-dark" asp-area=""
+                                   asp-controller="Account" asp-action="Index">
+                                    <img src="~/account.svg" style="width:20px; height:20px;" />
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        @*Dropdown block*@
+        <div id="dropdown-wrapper">
+            <div id="dropdown-block">
+                <div class="dropdown-shadow"></div>
+
+                <div class="dropdown-elem">
+                    <a class="nav-link text-dark" asp-area=""
+                       asp-controller="LikedGood" asp-action="Index"><img src="~/liked.svg" style="width:20px; height:20px;" />Liked: @liked_amount</a>
+
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+
+            <div class="dropdown-elem">
+                <div class="account-dropdown-parent">
+                    <a class="nav-link text-dark" onclick="account_anchor_click(this)">
+                        <img src="~/account.svg" style="width:20px; height:20px;" />
+                        Account <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div id="account-dropdown-children" style="display: none;">
+                        <a asp-action="Index" asp-controller="Account"> Data</a>
+                        <a> Orders </a>
+                        <a asp-action="Logout" asp-controller="Account"> Logout</a>
+                    </div>
+                </div>
+                    
+            </div>
+                }
+                @if (!User.Identity.IsAuthenticated)
+                {
+                <div class="dropdown-elem">
+                    <a class="nav-link text-dark " asp-area=""
+                       asp-controller="Account" asp-action="Index"><img src="~/account.svg" style="width:20px; height:20px;" />Login</a>
+
+                </div>
+                }
+                <div class="nav-item dropdown-elem" style="position:relative;">
+                    <div class="adropdown-v  nav-link text-dark" style="display:flex; width:100%!important;
+                        justify-content:center">
+                        <a class="adropbtn">
+                            Catalog
+                            <i onclick="category_icon_click(this)" class="fa fa-caret-down"></i>
+
+                        </a>
+
+                        <div class="subcategory-v">
+                            <categories orientation=Vertical Mobile="true"></categories>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+
+
+
+    @*BODY*@
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - ShopProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
+
+<style>
+
+
+
+    /* #region For DROPDOWN*/
+
+
+    .dropdown-elem .adropdown-v a {
+        width: fit-content !important;
+        text-align: center !important;
+    }
+    .dropdown-elem a:hover{
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .dropdown-elem .subcategory-v {
+        width: 100%;
+    }
+    
+
+    dropdown-block.adropbtn {
+        font-size: 1.5rem !important;
+    }
+
+    #dropdown-close {
+        display: none;
+        top: 12px;
+        right: 12px;
+        font-size: 2rem !important;
+        padding-right: calc(2px + 3vw);
+        position: absolute;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 3rem;
+    }
+    #dropdown-close:hover{
+        cursor: pointer;
+    }
+
+    #dropdown-block:hover {
+        cursor: pointer;
+    }
+
+    #dropdown-open:hover {
+        cursor: pointer;
+    }
+
+
+    #dropdown-wrapper {
+        position: absolute;
+        z-index: 2;
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(128, 128, 128, 0.5);
+    }
+
+    #dropdown-block {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background: white;
+        z-index: 3;
+        border-radius: 0px 0px 10px 10px;
+        box-shadow: 0px 5px 7px 0px rgba(128, 128, 128, 0.5)
+    }
+
+    .dropdown-elem {
+        position: relative;
+        width: fit-content;
+        height: 3rem;
+        font-size: 1.5rem !important;
+        width: 100%;
+    }
+
+
+        .dropdown-elem > * {
+            height: inherit !important;
+        }
+
+        .dropdown-elem a {
+            text-align: center;
+            color: black !important;
+            font-size: 1.25rem !important;
+            min-width: none !important;
+        }
+
+    .anchor-wrapper {
+        padding: 7px 14px 7px 14px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    #dropdown-open {
+        display: none;
+    }
+
+    .account-dropdown-parent{
+        position:relative;
+        display: block;
+        width:100%;
+    }
+
+
+    #account-dropdown-children {
+        display: none;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        background-color: white;
+        z-index: 5;
+        border-radius: 0px 0px 10px 10px
+    }
+
+    #account-dropdown-children a:last-child {
+        margin-bottom: 10px;
+    }
+
+        #account-dropdown-children a{
+            padding: 6px;
+            display: block;
+            width: 100%;
+            text-align:center;
+        }
+        /*#endregion*/
+
+
+        .account-block {
+            position: absolute;
+            width: 100%;
+            height: 150px;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            z-index: 3;
+            background-color: #f6f6f6;
+            transition: 1s;
+            display: none;
+        }
+
+    .account-show:hover .account-block{
+
+        display: block;
+    }
+    .account-show:hover {
+
+        color:red;
+    }
+    .account-desk-a {
+        display: block;
+        width: calc(100% - 40px);
+        text-align: center;
+        padding: 5px;
+        margin-top: 5px;
+        text-decoration: none;
+    }
+
+    .account-desk-a:hover{
+        cursor: pointer;
+        text-decoration: none;
+        background-color: grey;
+    }
+
+        /* #region for both types of categories*/
+        .adropdown {
+        float: left;
+        overflow: hidden;
+        height: 40px !important;
+    }
+
+        .adropdown a {
+            min-width: 160px;
+        }
+
+        .adropdown .adropbtn {
+            border: none;
+            outline: none;
+            color: black;
+            min-width: 160px;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+        }
+
+        .anavbar a:hover, .adropdown:hover {
+            background-color: #ddd;
+        }
+
+
+
+
+    .adropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: fit-content;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        left: 0;
+        top: 40px;
+    }
+
+        .adropdown-content a {
+            float: none;
+            color: black;
+            display: block;
+            text-align: left;
+            text-decoration: none;
+        }
+
+            .adropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .adropdown:hover .adropdown-content {
+        display: block;
+    }
+    /*#endregion */
+
+    /* #region for horizontal categories*/
+    .subcategory {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        left: 100%;
+    }
+
+    .category a {
+        width: 100%;
+    }
+
+    .category:hover > .subcategory {
+        display: block;
+    }
+
+    .category:hover {
+        display: flex;
+    }
+
+    /* #endregion*/
+
+    /*  #region  for vertical categories*/
+    .subcategory-v {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 3;
+        top: 100%;
+        width: 100%;
+    }
+
+    .category-v > a {
+        width: 100%;
+    }
+
+
+
+
+    /*  #endregion */
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .nav-container{
+        display:flex;
+        width:100%;
+        
+    }
+        .nav-container ul{
+            flex-grow: 0;
+        }
+        .search-div{
+            flex-grow:2;
+            margin-right:10px;
+        }
+            .search-div a:hover {
+                cursor: pointer !important;
+            }
+
+
+ .nav-link{
+     font-size:1rem;
+ }
+    .anavbar {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+        .anavbar a {
+            float: left;
+            color: white;
+            text-align: center;
+         /*   padding: 14px 16px;*/
+            text-decoration: none;
+        }
+
+    .category-li {
+        position: relative;
+    }
+
+    @@media(max-width:900px) {
+        .hide-li {
+            display: none;
+        }
+
+        #dropdown-open {
+            display: block;
+        }
+
+        .dropdown-elem i {
+            font-size: 20px;
+            padding: 2px;
+        }
+    }
+
+    @@media(min-width:900px) {
+        #dropdown-wrapper {
+            display: none !important;
+        }
+
+        #dropdown-close {
+            display: none !important;
+        }
+
+        #dropdown-open {
+            display: none !important;
+        }
+
+        .hide-li {
+            display: block !important;
+        }
+    }
+
+
+</style>
+
+<script>
+
+    function account_anchor_click(obj) {
+        let elem = obj.parentElement.querySelector("div");
+        console.log(elem);
+        console.log(elem.style["display"] );
+        if (elem.style["display"] == "none" || elem.style["display"] == "") {
+            elem.style["display"] = "block";
+        }
+        else if (elem.style["display"] == "block") {
+            elem.style["display"] = "none";
+        }
+    }
+
+    function category_icon_click(obj) {
+        let grandparent = obj.parentElement.parentElement;
+        let grandchild = grandparent.querySelector(":scope > .subcategory-v");
+
+        if (grandchild.style["display"] == "block") {
+            grandchild.style["display"] = "none";
+            obj.style["transform"] = "";
+        }
+        else if (grandchild.style["display"] == "none" || grandchild.style["display"] == "") {
+            grandchild.style["display"] = "block";
+            obj.style["transform"] = "rotateX(180deg)";
+        }
+
+    }
+  
+    $(function () {
+        $('#Search-input').keyup(function (event) {
+            if (event.keyCode === 13) {
+                $('#Search-form').submit();
+            }
+        });
+    });
+   
+   let form = document.getElementById("Search-form");
+    document.getElementById("input-anchor").addEventListener("click", function () {
+        form.submit();
+    });
+
+    let dropdown_wrapper = document.getElementById("dropdown-wrapper");
+    let dropdown_open = document.getElementById("dropdown-open");
+    let dropdown_close = document.getElementById("dropdown-close");
+
+    document.getElementById("dropdown-open").addEventListener("click", function () {
+        dropdown_open.style.display = "none";
+        dropdown_wrapper.style.display = "block";
+        dropdown_close.style.display = "block";
+    });
+
+    document.getElementById("dropdown-close").addEventListener("click", function () {
+        dropdown_open.style.display = "block";
+        dropdown_wrapper.style.display = "none";
+        dropdown_close.style.display = "none";
+    });
+    
+</script>

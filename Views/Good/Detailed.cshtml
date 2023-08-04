@@ -1,0 +1,55 @@
+﻿@model Good
+
+
+<h1>  @Model.Name</h1>
+<div class="row">
+    <div class="col-lg-8 offset-2">
+
+
+
+        @Model.Manufacturer?.Name
+        @Model.Year
+
+        @Model.Description
+
+
+
+
+        <div>
+            @foreach (var i in Model.Photos)
+            {
+                var base64 = Convert.ToBase64String(Model.Photos.First().Image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                <img class="goodimage" src="@imgSrc" />
+            }
+        </div>
+        @Model.Price
+        @* <a asp-action="Buy" asp-controller="Good" asp-all-route-data="@(new Dictionary<string,string>{ {"Id",Model.Id.ToString()},
+        { "Price", Model.Price.ToString() } })"> Buy</a> *@
+
+        @if (ViewBag.IsLiked == true)
+        {
+            <btn><a class=" liked-anchor" asp-action="DislikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id="@Model.Id"> Liked </a></btn>
+        }
+
+        @if (ViewBag.IsLiked == false)
+        {
+    <btn><a asp-action="LikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id=@Model.Id> Like </a></btn>
+        }
+
+        @if (ViewBag.Available == true)
+        {
+            <a asp-action="Buy" asp-controller="Good" asp-route-goodid="@Model.Id"> Buy</a>
+        }
+        else
+        {
+            <a class="btn btn-dark"> Not available!</a>
+        }
+    </div>
+</div>
+
+<style>
+    .goodimage{
+        width: 80%;
+    }
+</style>

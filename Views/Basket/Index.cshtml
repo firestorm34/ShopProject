@@ -1,0 +1,81 @@
+﻿@model BasketViewModel
+
+@if (Model.AmountOfGoods != 0)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+
+                <table class="table table-bordered">
+                    <thead>
+                        Goods in Basket
+                    </thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Amount
+                        </th>
+                        <th>
+                            Price for all instances
+                        </th>
+                    </tr>
+
+                    @for (int i = 0; i < Model.AmountOfGoods; i++)
+                    {
+                        if (Model.IsAvailable[i] == false)
+                        {
+                            <tr style="background-color :red;">
+
+                                <td> @Model.GoodNames[i]</td>
+                                <td>@Model.GoodPrices[i]</td>
+                                <td> @Model.GoodAmounts[i]</td>
+                                <td> @Model.SumOfGoods[i]</td>
+
+                                <td><a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><i class="bi bi-plus"></i>  </a></td>
+                                <td><a asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a></td>
+
+
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+
+                                <td> @Model.GoodNames[i]</td>
+                                <td>@Model.GoodPrices[i]</td>
+                                <td> @Model.GoodAmounts[i]</td>
+                                <td> @Model.SumOfGoods[i]</td>
+
+                                <td><a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><i class="bi bi-plus"></i>  </a></td>
+                                <td><a asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a></td>
+
+
+                            </tr>
+                        }
+                    }
+
+                </table>
+
+            </div>
+            <a asp-action="Plus"><i class="bi bi-dash"></i>  </a>
+        </div>
+        <div class="text-md-center"> Total Sum: @Model.TotalSum</div>
+        @if (Model.CanBuy == true)
+        {
+            <a asp-action="Index" asp-controller="Order" asp-route-user_id="@Model.UserId"> Buy</a>
+        }
+        else
+        {
+            <a class="btn bg-dark"> You can't make order because one of goods in your basket is not available!</a>
+        }
+    </div>
+}
+else
+{
+    <h1> EMPTY :(</h1>
+}

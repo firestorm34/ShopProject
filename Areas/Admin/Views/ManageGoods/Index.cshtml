@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Good>
+
+<style>
+    .good-block {
+        margin: auto;
+        font-style: italic;
+    }
+</style>
+
+<div class="container" style="flex:auto">
+    <div class="row"> <a class=" btn-sm btn-outline-secondary" asp-action="Create">Add new </a></div>
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+
+            @{ int i = 0;}
+            @foreach (var d in Model)
+
+            {
+                string imgSrc = null;
+                if (d.MainImage != null)
+                {
+                    var base64 = Convert.ToBase64String(d.MainImage);
+                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+
+                <div class="good-block">
+                    <div class="good-image">
+                        <img />
+                    </div>
+                    <div class="good-name">
+                        @d.Name
+                    </div>
+                    <div class="good-price">
+                        @d.Price
+                    </div>
+                    <div class="good-price">
+                        <img src="@imgSrc" alt="Good Image" style="width:20%" />
+                    </div>
+
+                    <div>
+                        <label> Remain: @d.GoodAtStock.AmountLeft</label>
+                    </div>
+                    <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-good_id=@d.Id> Update</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-good_id=@d.Id> Delete</a>
+                </div>
+
+
+            }
+
+
+        </div>
+    </div>
+</div>
+

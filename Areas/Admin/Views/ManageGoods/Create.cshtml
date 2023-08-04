@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Good
+@{
+    ViewBag.Title = "Добавление пользователя";
+}
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <select asp-items="@(new SelectList(ViewBag.Manufacturers, nameof(Manufacturer.Id),
+            nameof(Manufacturer.Name)))" asp-for="ManufacturerId"></select>
+    </div>
+    <div class="form-group">
+        <select asp-items="@(new SelectList(ViewBag.Categories, nameof(Category.Id),
+            nameof(Category.Name)))" asp-for="ManufacturerId"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Description</label>
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <div>
+        <label > Download image</label>
+        <input type= "file" asp-for="MainImage" />
+        @*<input asp-for="Smalimage1" />
+        <input asp-for="Smalimage2" />
+        <input asp-for="Smalimage3" />
+        <input asp-for="Smalimage4" />*@
+
+    </div>
+    <div class="form-group">
+        <label asp-for="Year" class="control-label">Year </label>
+        <input type="number" asp-for="Year" class="form-control" />
+    </div>
+    <input type="hidden" asp-for="GoodAtStock.Id" />
+    <div>
+        <label asp-for="GoodAtStock.AmountLeft" class="control-label"></label>
+        <input type="number" value="1" asp-for="GoodAtStock.AmountLeft" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить изменения" class="btn btn-outline-secondary" />
+    </div>
+</form>
+

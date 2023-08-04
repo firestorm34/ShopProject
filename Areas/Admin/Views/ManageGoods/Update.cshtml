@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model Good
+@{
+    ViewBag.Title = "Добавление пользователя";
+}
+<form asp-action="Update">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <select asp-items="@(new SelectList(ViewBag.Manufacturers, nameof(Manufacturer.Id),
+            nameof(Manufacturer.Name)))" asp-for="ManufacturerId"></select>
+    </div>
+    <div class="form-group">
+        <select asp-items="@(new SelectList(ViewBag.Categories, nameof(Category.Id),
+            nameof(Category.Name)))" asp-for="CategoryId"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Description</label>
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <div>
+        <input type="hidden" asp-for="MainImage" />
+        @{ string imgSrc = null;
+            if (Model.MainImage != null)
+            {
+
+                var base64 = Convert.ToBase64String(Model.MainImage);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+        }
+        <img class="goodimage" src="@imgSrc" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Year" class="control-label">Year </label>
+        <input type="number" asp-for="Year" class="form-control" />
+    </div>
+    <input type="hidden" asp-for="GoodAtStock.Id" />
+    <div>
+        <label asp-for="GoodAtStock.AmountLeft" class="control-label"></label>
+        <input type="number" asp-for="GoodAtStock.AmountLeft" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить изменения" class="btn btn-outline-secondary" />
+    </div>
+</form>

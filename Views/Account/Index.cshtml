@@ -1,0 +1,53 @@
+﻿@model ShopProject.ViewModels.EditUserViewModel
+
+<h2>Account data</h2>
+<div  class="data-form" >
+    <div asp-validation-summary="ModelOnly"></div>
+    @if (ViewBag.Alert != null)
+    {
+        string alert = $"{ViewBag.Alert}";
+        @Html.Raw(alert);
+    }
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Name"></label><br/>
+        <p> @Model.Name</p>
+
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <p> @Model.LastName</p>
+    </div>
+    <div>
+        <label asp-for="City"></label><br />
+        <p> @Model.City</p>
+
+    </div>
+
+    <div>
+        <label asp-for="Email"></label><br />
+        <p> @Model.Email</p>
+    </div>
+    <br />
+    <div>
+        <a class="btn btn-primary" asp-action="Edit" > Change</a>
+    </div>
+</div>
+
+<style>
+    #anchor:hover {
+        color: #1b6ec2 !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+    }
+    .data-form > div {
+        margin-bottom: 15px;
+    }
+</style>
+<script>
+    function change_password(){
+        document.getElementById("anchor").style["display"] = "none";
+       document.getElementById("Password").style["display"] = "block";
+        document.getElementById("IsPasswordChanged").value = true;
+    }
+</script>

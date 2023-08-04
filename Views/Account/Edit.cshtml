@@ -1,0 +1,73 @@
+﻿@model ShopProject.ViewModels.EditUserViewModel
+
+<h2>Account data</h2>
+<form method="post" class="data-form" asp-controller="Account" asp-action="Index">
+    <div asp-validation-summary="ModelOnly"></div>
+   
+    <input type="hidden" asp-for="Id" />
+
+    <div>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="LastName"></label><br />
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+    <div>
+        <label asp-for="City"></label><br />
+        <input asp-for="City" />
+        <span asp-validation-for="City"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <br />
+
+    <a id="anchor" style="color: #1b6ec2; padding-top: 15px; display: inline-block;" onclick="change_password()">Change password</a>
+    <br />
+    <div style="display:none;" id="Password">
+        <div id="OldPassword">
+            <label asp-for="Password"></label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div id="NewPassword">
+            <label asp-for="NewPassword"></label><br />
+            <input asp-for="NewPassword" />
+            <span asp-validation-for="NewPassword"></span>
+        </div>
+
+    </div>
+    <input id="IsPasswordChanged" type="hidden" asp-for="IsPasswordChanged" value="false" />
+    <br />
+
+    <div>
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </div>
+</form>
+
+<style>
+    #anchor:hover {
+        color: #1b6ec2 !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+    }
+
+    .data-form > div {
+        margin-bottom: 15px;
+    }
+</style>
+<script>
+    function change_password(){
+        document.getElementById("anchor").style["display"] = "none";
+       document.getElementById("Password").style["display"] = "block";
+        document.getElementById("IsPasswordChanged").value = true;
+    }
+</script>
+

@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@model List<Manufacturer>
+
+<div class="container" style="flex:auto">
+    <div class=" row">
+        <a class="btn-sm btn-outline-secondary" asp-controller="Manufacturers" asp-action="Create"> Create new</a>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-2">
+            @foreach (var d in Model)
+
+            {
+
+                <div class="good-name">
+                    <label>Name: @d.Name</label>
+
+                </div>
+                <a class="btn-sm btn-primary" asp-controller="Manufacturers" asp-action="Update"
+                   asp-route-manufacturer_id=@d.Id> Update</a>
+
+                <a class="btn-sm btn-danger" asp-controller="Manufacturers" asp-action="Delete"
+                   asp-route-manufacturer_id=@d.Id> Delete</a>
+
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
