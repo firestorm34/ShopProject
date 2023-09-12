@@ -24,14 +24,14 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var orders = await unit.OrderRepository.GetAll();
+            var orders = await unit.OrderRepository.GetAllAsync();
 
             return View(orders);
         }
 
         public async Task<IActionResult> Update(int order_id)
         {
-            Order order = await unit.OrderRepository.Get(order_id);
+            Order order = await unit.OrderRepository.GetAsync(order_id);
             return View(order);
         }
 
@@ -41,20 +41,20 @@ namespace ShopProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var orderedit = await unit.OrderRepository.Get(order.Id);
+                var orderedit = await unit.OrderRepository.GetAsync(order.Id);
                 orderedit.Status = order.Status;
                 await unit.SaveAsync();
-                return RedirectToAction("Index", "Orders");
+                return RedirectToAction("Index");
             }
-
-            return BadRequest();
+            
+            return View(order);
 
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int order_id)
         {
-            await unit.OrderRepository.Delete(order_id);
+            await unit.OrderRepository.DeleteAsync(order_id);
             await unit.SaveAsync();
             return RedirectToAction("Index", "Orders");
         }

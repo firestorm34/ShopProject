@@ -1,10 +1,10 @@
 ﻿@model ShopProject.ViewModels.LoginViewModel
 
 <h2>Вход в приложение</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
+<form style="margin-bottom:10px" method="post" asp-controller="Account" asp-action="Login"
       asp-route-returnUrl="@Model.ReturnUrl">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
+    <div style="margin-bottom:10px;">
         <label asp-for="Email"></label><br />
         <input asp-for="Email" />
         <span asp-validation-for="Email"></span>
@@ -15,7 +15,7 @@
         <span asp-validation-for="Password"></span>
     </div>
     <br />
-    <div>
+    <div style="margin-bottom:10px;">
         <input asp-for="RememberMe" />
         <label asp-for="RememberMe"></label>
 
@@ -26,5 +26,5 @@
 </form>
 
 <div>
-    <a asp-action="Register"> Register</a>
+    <a class="btn btn-primary"  asp-action="Register" > Зарегистрироваться </a>
 </div>

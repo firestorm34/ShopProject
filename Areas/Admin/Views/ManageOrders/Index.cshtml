@@ -7,17 +7,22 @@
 <div class="container" style="flex:auto">
 
     <div class="row">
-        <div class="col-lg-8 offset-2">
+
+        <div class="col-lg-6 offset-1" 
+        style="border-radius: 20px;
+        border: 2px solid black;
+        padding: 15px;">
+
             @foreach (var d in Model)
 
             {
 
                 <div class="good-name">
-                    <label>Name: @d.Id</label>
+                    <label>ID: @d.Id</label>
 
                 </div>
                 <div class="form-group">
-                    <label> User: @(d.User.Name+" " +d.User.LastName) </label>
+                    <label> Customer Name: @(d.User.Name+" " +d.User.LastName) </label>
                 </div>
                 <div class="form-group">
                     Basket:<a asp-action="Show" asp-controller="Basket" asp-area="" asp-route-basket_id="@(d.BasketId)"> @(d.BasketId) </a>
@@ -44,4 +49,11 @@
     </div>
 </div>
 
+<style>
+    a {
+        text-decoration: none;
+    }
 
+    .form-group {
+        margin-bottom: 5px;
+</style>

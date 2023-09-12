@@ -15,9 +15,7 @@ C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.deps.json
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.runtimeconfig.json
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.runtimeconfig.dev.json
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.dll
-C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.pdb
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.Views.dll
-C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.Views.pdb
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\Humanizer.dll
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\IdentityModel.dll
 C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\Microsoft.AspNet.Identity.Core.dll
@@ -258,10 +256,9 @@ C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\Razor\Views\_ViewImpo
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.RazorTargetAssemblyInfo.cache
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.RazorTargetAssemblyInfo.cs
-C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.Views.pdb
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.csproj.CopyComplete
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.dll
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\refint\ShopProject.dll
-C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.pdb
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ShopProject.genruntimeconfig.cache
 C:\.NET\ShopProject\obj\Release\net5.0-windows10.0.19041.0\ref\ShopProject.dll
+C:\.NET\ShopProject\bin\Release\net5.0-windows10.0.19041.0\ShopProject.StaticWebAssets.xml

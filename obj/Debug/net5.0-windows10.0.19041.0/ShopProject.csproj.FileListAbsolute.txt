@@ -204,11 +204,6 @@ C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.RazorAssemb
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.RazorAssemblyInfo.cs
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\scopedcss\bundle\ShopProject.styles.css
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\ShopProject.StaticWebAssets.Manifest.cache
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\ShopProject.StaticWebAssets.Pack.cache
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\msbuild.ShopProject.Microsoft.AspNetCore.StaticWebAssets.props
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\msbuild.build.ShopProject.props
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\msbuild.buildMultiTargeting.ShopProject.props
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\msbuild.buildTransitive.ShopProject.props
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.TagHelpers.input.cache
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.TagHelpers.output.cache
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.RazorCoreGenerate.cache
@@ -258,6 +253,7 @@ C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.RazorTarget
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.RazorTargetAssemblyInfo.cs
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.csproj.CopyComplete
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.dll
-C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\refint\ShopProject.dll
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ShopProject.genruntimeconfig.cache
 C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\ref\ShopProject.dll
+C:\.NET\ShopProject\bin\Debug\net5.0-windows10.0.19041.0\ref\ShopProject.dll
+C:\.NET\ShopProject\obj\Debug\net5.0-windows10.0.19041.0\staticwebassets\ShopProject.StaticWebAssets.xml

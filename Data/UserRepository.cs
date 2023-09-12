@@ -18,6 +18,10 @@ namespace ShopProject.Data
             this.context = context;
         }
         
+        public  Task<User> GetById(int id)
+        {
+            return  context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public User GetByUserName(string Name)
         {
@@ -28,7 +32,7 @@ namespace ShopProject.Data
 
         public async Task<User> TryLogin(LoginModel model)
         {
-            return await context.Users.FirstOrDefaultAsync(u => u.Email == model.Email/* && u.Password == model.Password*/);
+            return await context.Users.FirstOrDefaultAsync(u => u.Email == model.Email /* && u.Password == model.Password*/);
         }
 
         public async Task<User> CheckEmail( string Email)

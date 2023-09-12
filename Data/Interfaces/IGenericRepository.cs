@@ -8,15 +8,15 @@ namespace ShopProject.Data
     public interface  IGenericRepository<TEntity>
     {
 
-        public Task<List<TEntity>> GetAll();
-        public Task<TEntity> Get(int id);
+        public Task<List<TEntity>> GetAllAsync();
+        public Task<TEntity> GetAsync(int id);
         /// <summary> 
         /// Perform a divide by b
         /// <para>line1</para>
         /// </summary>
         /// <returns>int value</returns>
-        public Task<TEntity> Add(TEntity entity);
+        public Task<TEntity> AddAsync(TEntity entity);
         public TEntity Update(TEntity entity);
-        public Task Delete(int id);
+        public Task DeleteAsync(int id);
     }
 }

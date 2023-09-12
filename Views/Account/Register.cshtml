@@ -1,6 +1,6 @@
 ﻿@model ShopProject.ViewModels.RegisterViewModel
 <h2>Регистрация нового пользователя</h2>
-<form method="post" asp-controller="Account" asp-action="Register">
+<form method="post"  asp-controller="Account" asp-action="Register">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <label asp-for="Email"></label><br />
@@ -22,7 +22,7 @@
         <input asp-for="Password" />
         <span asp-validation-for="Password"></span>
     </div>
-    <div>
+    <div style="margin-bottom:10px;">
         <label asp-for="PasswordConfirm"></label><br />
         <input asp-for="PasswordConfirm" />
         <span asp-validation-for="PasswordConfirm"></span>

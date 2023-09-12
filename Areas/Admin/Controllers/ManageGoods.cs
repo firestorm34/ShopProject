@@ -26,22 +26,22 @@ namespace ShopProject.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var goods = await unit.GoodRepository.GetAll();
-
-            return View(goods);
+            
+           var goods= await unit.GoodRepository.GetAllAsync();
+           return View(goods);
         }
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Manufacturers = await unit.ManufacturerRepository.GetAll();
-            ViewBag.Categories = await unit.CategoryRepository.GetAll();
+            ViewBag.Manufacturers = await unit.ManufacturerRepository.GetAllAsync();
+            ViewBag.Categories = await unit.CategoryRepository.GetAllAsync();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(Good good)
         {
-            await unit.GoodRepository.Add(good);
+            await unit.GoodRepository.AddAsync(good);
             await unit.SaveAsync();
             return RedirectToAction("Index", "ManageGoods");
         }
@@ -50,7 +50,7 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(int good_id)
         {
-            var good = await unit.GoodRepository.Get(good_id);
+            var good = await unit.GoodRepository.GetAsync(good_id);
             good.IsArchieved = true;
             await unit.SaveAsync();
             //if (good !=null)
@@ -64,13 +64,13 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Update(int good_id)
         {
-            Good good = await unit.GoodRepository.Get(good_id);
+            Good good = await unit.GoodRepository.GetAsync(good_id);
             //GoodViewModel model = new GoodViewModel {Id = good.Id, Name = good.Name, 
             //MainImage = good.MainImage, AmountLeft = good.GoodAtStock.AmountLeft,
             //ManufacturerId= good.ManufacturerId, CategoryId = good.CategoryId,
             // Description = good.Description, Price = good.Price, Year = good.Year};
-            ViewBag.Manufacturers = await unit.ManufacturerRepository.GetAll();
-            ViewBag.Categories = await unit.CategoryRepository.GetAll();
+            ViewBag.Manufacturers = await unit.ManufacturerRepository.GetAllAsync();
+            ViewBag.Categories = await unit.CategoryRepository.GetAllAsync();
             return View(good);
         }
 

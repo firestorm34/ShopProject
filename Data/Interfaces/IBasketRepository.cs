@@ -10,7 +10,7 @@ namespace ShopProject.Data.Interfaces
     {
 
         public Task<Basket> GetByUserId(int id);
-        public Task<Basket> GetFromOrder(int basketid);
+        public Task<Basket> GetByIdFromOrder(int basket_id);
 
 
     }

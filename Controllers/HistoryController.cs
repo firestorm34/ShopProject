@@ -28,7 +28,7 @@ namespace ShopProject.Controllers
             {
 
                 var good_id = historyelement.ViwedGoodId;
-                var good = await unit.GoodRepository.Get(good_id);
+                var good = await unit.GoodRepository.GetAsync(good_id);
                 if (good != null)
                 {
                     var isliked = await unit.LikedGoodRepository.GetByGoodAndUserId(good.Id, unit.CurrentUser.Id);
@@ -44,7 +44,7 @@ namespace ShopProject.Controllers
                 }
                 if(good== null)
                 {
-                   await unit.HistoryElementRepository.Delete(historyelement.Id);
+                   await unit.HistoryElementRepository.DeleteAsync(historyelement.Id);
                 }
             }
 

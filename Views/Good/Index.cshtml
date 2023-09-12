@@ -1,61 +1,86 @@
 ﻿@model IEnumerable<Good>
+<link rel="stylesheet" href="~/css/Main.css" />
+@*<section class="image-section">
+    <div class="main-image-wrapper ">
 
-<style>
-    .good-block{
-     margin: auto;
-     font-style:italic;
-    }
+        <span class="main-picture-text">
+            New Iphone 14 and
+            Iphone 14 plus are now availabe!
+        </span>
 
-</style>
+        <img style="width: 100%;" src="Iphone.png">
 
+    </div>
+</section>*@
+
+
+<div style="color: red; margin-top:10px">@ViewBag.Error</div>
 <div class="container" style="flex:auto">
+    
     <div class="row">
-        <div class="col-lg-8 offset-2">
-
-            @{ int i = 0;}
-            @foreach (var d in Model)
-
-            {
+        @if(Model is not null){
+            int i = 0;
+            foreach (var d in Model){
                 string imgSrc = null;
                 if (d.MainImage != null)
                 {
                     var base64 = Convert.ToBase64String(d.MainImage);
                     imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                 }
+        <div class="good-item">
+            <div class="image-wrapper">
+                <img src="Good1.png" alt="">
+            </div>
+            <p class="Name"> Iphone 14 Pro Max 128 GB Arctic Blue</p>
+            <div class="rating" style="color:orange">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
 
-                <div class="good-block">
-                    <div class="good-image">
-                        <img />
-                    </div>
-                    <div class="good-name">
-                        @d.Name
-                    </div>
-                    <div class="good-price">
-                        @d.Price
-                    </div>
-                    <div class="good-price">
-                        <img src="@imgSrc" alt="Good Image" style="width:80%" />
-                    </div>
-                    <a class="good-detail-link" asp-controller="Good" asp-action="Detailed" asp-route-good_id=@d.Id> Detailed</a>
-                </div>
-                if (ViewBag.IsLiked[i] == false)
-                {
-
-                    <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@d.Id> Like </a></btn>
-
-                }
-                if (ViewBag.IsLiked[i] == true)
-                {
-
-                    <btn><a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
-                            asp-route-good_id ="@d.Id"> Liked </a></btn>
-
-                }
-                i++;
-            }
-
-
+            <p class="price"> 600  $</p>
+            <div class="detail_link"> <a class="good-detail-link" 
+             href="/Good/Detailed?good_id=5"> Detailed</a> </div>
+            <a class="btn  btn-buy">Buy</a>
         </div>
+            
+            
+                  if(ViewBag.ShowLike == true) { 
+                    if (ViewBag.IsLiked[i] == false)
+                    {
+
+                        <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@d.Id> Like </a></btn>
+
+                    }
+                    if (ViewBag.IsLiked[i] == true)
+                    {
+
+                        <btn>
+                            <a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
+                               asp-route-good_id="@d.Id"> Liked </a>
+                        </btn>
+
+                    }
+                    i++;
+               }
+            } 
+     }
     </div>
 </div>
 
+
+<style>
+    .detail_link {
+        margin-bottom: calc(4px + 0.25vw);
+    }
+
+    .row {
+        justify-content: flex-start !important;
+    }
+
+    .col-3 {
+        flex: 0 0 auto;
+    }
+</style>

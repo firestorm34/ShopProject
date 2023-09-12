@@ -21,7 +21,7 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            var manufacturers = await unit.ManufacturerRepository.GetAll();
+            var manufacturers = await unit.ManufacturerRepository.GetAllAsync();
             return View(manufacturers);
         }
 
@@ -34,7 +34,7 @@ namespace ShopProject.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Manufacturer manufacturer)
         {
-            await unit.ManufacturerRepository.Add(manufacturer);
+            await unit.ManufacturerRepository.AddAsync(manufacturer);
             await unit.SaveAsync();
             return RedirectToAction("Index", "Manufacturers");
         }
@@ -43,7 +43,7 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(int manufacturer_id)
         {
-            await unit.ManufacturerRepository.Delete(manufacturer_id);
+            await unit.ManufacturerRepository.DeleteAsync(manufacturer_id);
             await unit.SaveAsync();
 
             return RedirectToAction("Index", "Manufacturers");
@@ -52,7 +52,7 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Update(int manufacturer_id)
         {
-            Manufacturer manufacturer= await unit.ManufacturerRepository.Get(manufacturer_id);
+            Manufacturer manufacturer= await unit.ManufacturerRepository.GetAsync(manufacturer_id);
             return View(manufacturer);
         }
 

@@ -9,6 +9,9 @@ namespace ShopProject.Data.Interfaces
 {
     public interface IUserRepository: IGenericRepository<User>
     {
+        public Task<User> GetById(int id);
+       
+       
         public User GetByUserName(string Name);
         public  Task<User> CheckEmail(string Email);
         //public Task<User> TryLogin(User user);

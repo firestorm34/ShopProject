@@ -13,14 +13,14 @@ namespace ShopProject.Data
         {
             context = _context;
         }
-        public virtual async Task<TEntity> Add(TEntity entity)
+        public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             await context.Set<TEntity>().AddAsync(entity);
             return entity;
 
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task DeleteAsync(int id)
         {
             var entity = await context.Set<TEntity>().FindAsync(id);
             if(entity == null)
@@ -32,12 +32,12 @@ namespace ShopProject.Data
         }
 
 
-        public virtual async Task<TEntity> Get(int id)
+        public virtual async Task<TEntity> GetAsync(int id)
         {
             return await context.Set<TEntity>().FindAsync(id);
         }
 
-        public virtual async Task<List<TEntity>> GetAll()
+        public virtual async Task<List<TEntity>> GetAllAsync()
         {
             return await context.Set<TEntity>().ToListAsync();
         }

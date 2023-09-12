@@ -7,24 +7,26 @@ using ShopProject.Models;
 using ShopProject.Data;
 using ShopProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 namespace ShopProject.Controllers
 {
     public class GoodController : Controller
     {
-        UnitOfWork unit;
-        UserManager<User> userManager;
-        SignInManager<User> signInManager;
+        UnitOfWork _unit;
+        UserManager<User> _userManager;
+        SignInManager<User> _signInManager;
         public GoodController(UnitOfWork unit, UserManager<User> userManager, SignInManager<User> signInManager)
         {
-           this.unit = unit;
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            _unit = unit;
+            _userManager = userManager;
+            _signInManager = signInManager;
+          
         }
 
-        
 
 
+       
 
         public async Task<IActionResult> Index(int category_id)
         {
@@ -33,12 +35,11 @@ namespace ShopProject.Controllers
             {
                 return BadRequest("Category 0 doesnt exist!");
             }
-            if (unit.CurrentUser != null)
-            {
-                Category category =  await unit.CategoryRepository.Get(category_id);
-                var goods = await unit.GoodRepository.GetAll();
-                var categories = unit.CategoryRepository.GetChildCategories(category_id);
-                var neededgoods = goods.Where(g => g.Category == category);
+           
+            Category category =  await _unit.CategoryRepository.GetAsync(category_id);
+                List<Good> goods = await _unit.GoodRepository.GetAllAsync();
+                List<Category> categories = _unit.CategoryRepository.GetChildCategories(category_id);
+                IEnumerable<Good> neededgoods = goods.Where(g => g.Category == category);
                 if (categories != null)
                 {
                     categories.Add(category);
@@ -47,77 +48,93 @@ namespace ShopProject.Controllers
                 }
 
                 ViewBag.IsLiked = new List<bool>();
-
-                foreach(var good in neededgoods.ToList())
+                if (_unit.CurrentUser != null)
                 {
-                    var isliked = await unit.LikedGoodRepository.GetByGoodAndUserId(good.Id, unit.CurrentUser.Id);
-                    if(isliked != null)
-                    {
-                        ViewBag.IsLiked.Add(true);
-                    }
-                    else
-                    {
-                        ViewBag.IsLiked.Add(false);
-                    }
-                    
+             
+                    foreach (var good in neededgoods.ToList())
+                        {
+                            var isliked = await _unit.LikedGoodRepository.GetByGoodAndUserId(good.Id, _unit.CurrentUser.Id);
+                            if(isliked != null)
+                            {
+                                ViewBag.IsLiked.Add(true);
+                            }
+                            else
+                            {
+                                ViewBag.IsLiked.Add(false);
+                            }
+
+                        }
                 }
-                return View(neededgoods);
-            }
-            return RedirectToAction("Index", "Home");
+                else
+                {
+
+                ViewBag.ShowLike = false;
+                }
+            return View(neededgoods);
         }
 
         [HttpPost]
-        public IActionResult Search(string good_name)
+        public async Task<IActionResult> Search([FromForm]string Search_text)
         {
-            var neededgoods = unit.GoodRepository.GetByName(good_name);
-            if (neededgoods == null)
+            List<Good> neededgoods = await _unit.GoodRepository.GetByNameAsync(Search_text);
+            if (neededgoods == null || neededgoods.Count == 0)
             {
                 ViewBag.Error = "There is not any good with that name";
-                return View();
+                return View("Index");
             }
-            return View(neededgoods);
+            return View("Index",neededgoods);
         }
 
 
         public async Task<IActionResult> Detailed(int good_id)
         {
-            var history = await unit.HistoryRepository.GetByUserId(unit.CurrentUser.Id);
+            if (good_id == 0)
+            {
+                return RedirectToAction("Index", "Good", new { category_id = 1 });
+            }
 
-            await unit.HistoryElementRepository.Add
-                (new HistoryElement { HistoryId = history.Id, ViwedGoodId = good_id });
-            unit.Save();
+            var good = await _unit.GoodRepository.GetAsync(good_id);
+            if (good == null)
+            {
+                return BadRequest();
+            }
+
+            if (_unit.CurrentUser is not  null) {
+                var history = await _unit.HistoryRepository.GetByUserId(_unit.CurrentUser.Id);
+
+                await _unit.HistoryElementRepository.AddAsync
+                    (new HistoryElement { HistoryId = history.Id, ViwedGoodId = good_id });
+                _unit.Save();
+                var isliked = await _unit.LikedGoodRepository.GetByGoodAndUserId(good_id, _unit.CurrentUser.Id);
+                if (isliked == null)
+                {
+                    ViewBag.IsLiked = false;
+                }
+                else
+                {
+                    ViewBag.IsLiked = true;
+                }
+            }
+            else
+            {
+                ViewBag.ShowLike = false;
+            }
 
             ViewBag.Available = true;
-            if (good_id ==0)
-            {
-                return RedirectToAction("Index", "Good", new { category_id = 1});
-            }
-            var goodatstock = await unit.GoodAtStockRepository.GetByGoodId(good_id);
+           
+            var goodatstock = await _unit.GoodAtStockRepository.GetByGoodId(good_id);
 
             if (goodatstock == null )
             {
-                 goodatstock = await unit.GoodAtStockRepository.
-                    Add(new GoodAtStock { GoodId = good_id, AmountLeft = 0 });
-                unit.Save();
+                 goodatstock = await _unit.GoodAtStockRepository.
+                    AddAsync(new GoodAtStock { GoodId = good_id, AmountLeft = 0 });
+                _unit.Save();
             }
             if(goodatstock.AmountLeft < 1)
             {
                 ViewBag.Available = false;
             }
-            var good = await unit.GoodRepository.Get(good_id);
-            if(good== null)
-            {
-                return BadRequest();
-            }
-            var isliked =await unit.LikedGoodRepository.GetByGoodAndUserId(good_id, unit.CurrentUser.Id);
-            if(isliked== null)
-            {
-                ViewBag.IsLiked = false;
-            }
-            else
-            {
-                ViewBag.IsLiked = true;
-            }
+
             return View(good);
         }
 
@@ -126,23 +143,23 @@ namespace ShopProject.Controllers
             if (goodid > 0)
             {
                
-                var good = await unit.GoodRepository.Get(goodid);
+                var good = await _unit.GoodRepository.GetAsync(goodid);
                 if (ModelState.IsValid)
                 {
                     var a = User;
-                    User user = await userManager.FindByNameAsync(User.Identity.Name);
-                    var basket = await unit.BasketRepository.GetByUserId(user.Id);
+                    User user = await _userManager.FindByNameAsync(User.Identity.Name);
+                    var basket = await _unit.BasketRepository.GetByUserId(user.Id);
                     if (basket == null)
                     {
                         
-                        basket = await unit.BasketRepository.Add(new Basket {
+                        basket = await _unit.BasketRepository.AddAsync(new Basket {
                             UserId =user.Id});
                     }
-                    await unit.SaveAsync();
-                    var goodinbasket = await unit.GoodInBasketRepository.GetByGoodAndBasketId(good.Id,(int)basket.Id);
+                    await _unit.SaveAsync();
+                    var goodinbasket = await _unit.GoodInBasketRepository.GetByGoodAndBasketId(good.Id,(int)basket.Id);
                     if (goodinbasket == null)
                     {
-                        goodinbasket = await unit.GoodInBasketRepository.Add(new GoodInBasket { GoodId = good.Id, BasketId = basket.Id });
+                        goodinbasket = await _unit.GoodInBasketRepository.AddAsync(new GoodInBasket { GoodId = good.Id, BasketId = basket.Id });
                         basket.AmountOfGood++;
                         
                     }
@@ -152,7 +169,7 @@ namespace ShopProject.Controllers
                     basket.TotalSum += good.Price;
 
 
-                    await unit.SaveAsync();
+                    await _unit.SaveAsync();
                     return RedirectToAction("Detailed", "Good", new { good_id = good.Id });
                     //HERE SHOULD BE CODE TO MARK BUYING GOOD!
 

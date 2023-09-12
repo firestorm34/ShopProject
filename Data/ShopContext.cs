@@ -21,8 +21,8 @@ namespace ShopProject.Data
 {
     public partial class ShopContext :  IdentityDbContext<User, Role, int>
     {
-        IConfiguration Configuration;
-        public ShopContext(IConfiguration configuration, DbContextOptions<ShopContext> options)
+        //IConfiguration Configuration;
+        public ShopContext( DbContextOptions<ShopContext> options)
             : base(options)
         { 
         
@@ -274,7 +274,8 @@ namespace ShopProject.Data
 
                 entity.Property(e => e.Id).HasColumnType("int(11)");
 
-                entity.Property(e => e.Adress).HasColumnType("int(11)");
+                entity.Property(e => e.Adress).HasMaxLength(50)
+                    .IsFixedLength(true);
 
                 entity.Property(e => e.BasketId).HasColumnType("int(11) ");
 

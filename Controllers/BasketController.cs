@@ -26,7 +26,7 @@ namespace ShopProject.Controllers
             Basket basket = await unit.BasketRepository.GetByUserId(unit.CurrentUser.Id);
             if (basket == null)
             {
-                basket = await unit.BasketRepository.Add(new Basket
+                basket = await unit.BasketRepository.AddAsync(new Basket
                 {
                     UserId = unit.CurrentUser.Id,
                 });
@@ -39,7 +39,7 @@ namespace ShopProject.Controllers
         {
             var basket = await unit.BasketRepository.GetByUserId(unit.CurrentUser.Id);
             var goodinbasket = await unit.GoodInBasketRepository.GetByGoodAndBasketId(goodid,(int)basket.Id);
-            await unit.GoodInBasketRepository.Delete(goodinbasket.Id);
+            await unit.GoodInBasketRepository.DeleteAsync(goodinbasket.Id);
             
             basket.AmountOfGood--;
             basket.TotalSum -= (decimal)goodinbasket.Amount * goodinbasket.Good.Price;
@@ -49,7 +49,7 @@ namespace ShopProject.Controllers
 
         public async Task<IActionResult> Show(int basket_id)
         {
-            var basket = await unit.BasketRepository.GetFromOrder(basket_id);
+            var basket = await unit.BasketRepository.GetByIdFromOrder(basket_id);
             if(basket != null){
                 BasketViewModel model = await GetBasketViewModelAsync(basket);
                 return View(model);
@@ -61,8 +61,8 @@ namespace ShopProject.Controllers
         {
             BasketViewModel model = new BasketViewModel();
             model.CanBuy = true;
-            var goodsinbasket = unit.GoodInBasketRepository.GetAllByBasketId((int)basket.Id);
-            model.TotalSum = (decimal)basket.TotalSum;
+            var goodsinbasket = unit.GoodInBasketRepository.GetAllByBasketId(basket.Id);
+            model.TotalSum = basket.TotalSum;
             model.UserId = unit.CurrentUser.Id;
 
             foreach (var goodinbasket in goodsinbasket.ToList())
@@ -85,7 +85,7 @@ namespace ShopProject.Controllers
 
 
             }
-            model.AmountOfGoods = (int)basket.AmountOfGood;
+            model.AmountOfGoods = basket.AmountOfGood;
             return model;
 
         }

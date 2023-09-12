@@ -8,11 +8,23 @@
 <form asp-action="Update" asp-controller="Manufacturers">
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
-    <div class="form-group">
-        <label asp-for="Name" class="control-label"></label>
+    <div style="margin-bottom = 14px;" class="form-group">
+        <label style="margin-bottom = 8px;" asp-for="Name" class="control-label"></label>
         <input type="text" asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
         <input type="submit" value="Обновить" class="btn btn-outline-secondary" />
     </div>
 </form>
+<style>
+    label {
+        margin-bottom: 5px !important;
+    }
+
+    select {
+        word-wrap: normal;
+        border: 1px solid grey;
+        border-radius: 5px;
+        height: 28px !important;
+    }
+</style>

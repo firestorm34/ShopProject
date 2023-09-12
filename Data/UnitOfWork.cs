@@ -19,7 +19,10 @@ namespace ShopProject.Data
         public User? CurrentUser {
             get { return context.Users.FirstOrDefault(u => u.UserName == signInManager.Context.User.Identity.Name); }
         }
+        public UnitOfWork()
+        {
 
+        }
         public UnitOfWork(ShopContext _context, SignInManager<User> _signInManager, UserManager<User> _userManager,
              IServiceScopeFactory serviceScopeFactory)
         {
@@ -47,7 +50,7 @@ namespace ShopProject.Data
        
 
         #region Properties for repositories
-        public IUserRepository UserRepository { get => userRepository == null ? new UserRepository(context) : userRepository; }
+        public virtual IUserRepository UserRepository { get => userRepository == null ? new UserRepository(context) : userRepository; }
         public IGoodInBasketRepository GoodInBasketRepository { get => goodInBasketRepository == null ?
                 new GoodInBasketRepository(context) : goodInBasketRepository; }
         public IBasketRepository BasketRepository { get => basketRepository == null ? new BasketRepository(context) : basketRepository; }

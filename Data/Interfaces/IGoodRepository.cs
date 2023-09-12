@@ -9,6 +9,6 @@ namespace ShopProject.Data
     public interface IGoodRepository: IGenericRepository<Good>
     {
 
-        public Task<List<Good>> GetByName(string name);
+        public Task<List<Good>> GetByNameAsync(string name);
     }
 }

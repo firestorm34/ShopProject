@@ -17,22 +17,28 @@ namespace ShopProject.Controllers
         }
         public async Task<IActionResult> Index(int user_id)
         {
-            Basket basket =await unit.BasketRepository.GetByUserId(user_id);
-            User user = await unit.UserRepository.Get(user_id);
-            if (basket != null)
-            {
-                var order = new Order
+            User user = await unit.UserRepository.GetById(user_id);
+            if(user is not null) { 
+                Basket basket =await unit.BasketRepository.GetByUserId(user_id);
+            
+                if (basket != null)
                 {
-                    BasketId = basket.Id,
-                    UserId = user.Id,
-                    Cost = basket.TotalSum,
-                    User = user,
-                    Basket = basket,
-                    Status = Status.InProcess
-                };
-                return View(order);
+                    var order = new Order
+                    {
+                        BasketId = basket.Id,
+                        UserId = user.Id,
+                        Cost = basket.TotalSum,
+                        User = user,
+                        Basket = basket,
+                        Status = Status.InProcess
+                    };
+                    return View(order);
+                }
+                ModelState.AddModelError("", "Basket doesn't exists!");
+                return View();
             }
-            return null;
+            ModelState.AddModelError("", "You are not authenticated!");
+            return View("Index");
         }
 
         [HttpPost]
@@ -41,9 +47,9 @@ namespace ShopProject.Controllers
             order.User = null;
             order.Basket = null;
             order.Status = Status.InProcess;
-            order.User = await unit.UserRepository.Get(unit.CurrentUser.Id);
+            order.User = await unit.UserRepository.GetAsync(unit.CurrentUser.Id);
             order.Basket = await unit.BasketRepository.GetByUserId(order.User.Id);
-           await unit.OrderRepository.Add(order);
+           await unit.OrderRepository.AddAsync(order);
             var goodsinbasket = unit.GoodInBasketRepository.GetAllByBasketId((int)order.Basket.Id);
 
             List<GoodAtStock> StockGoods = new List<GoodAtStock>();

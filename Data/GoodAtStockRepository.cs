@@ -17,6 +17,7 @@ namespace ShopProject.Data
 
         public async Task<GoodAtStock> GetByGoodId(int id)
         {
+            
             return await context.GoodAtStocks.FirstOrDefaultAsync(g => g.GoodId == id);
         }
     }

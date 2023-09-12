@@ -19,18 +19,18 @@ namespace ShopProject.Data
         }
 
 
-        public async override Task<Category> Get(int id)
+        public async override Task<Category> GetAsync(int id)
         {
 
             return await context.Categories.FindAsync(id);
         }
 
-        public async override Task<List<Category>> GetAll()
+        public async override Task<List<Category>> GetAllAsync()
         {
             var a = context.Categories.Where(g => g.Id != 0).Include(c => c.ParentCategory);
             return await a.ToListAsync();
         }
-        public async Task<List<Category>> GetAllForManage()
+        public async Task<List<Category>> GetAllForManageAsync()
         {
             var a = context.Categories.Include(c => c.ParentCategory);
             return await a.ToListAsync();
@@ -47,7 +47,9 @@ namespace ShopProject.Data
             {
                 return null;
             }
-            var subcategories =  context.Categories.Where(c => c.ParentCategoryId == id);
+
+
+            var subcategories =  context.Categories.Where(c => c.ParentCategoryId == id).ToList();
             if (subcategories != null)
             {
                 
@@ -56,12 +58,12 @@ namespace ShopProject.Data
                     var subcategorieschild = GetChildCategories(subcategory.Id);
                     if (subcategorieschild != null)
                     {
-                        finalSubcategories = subcategories.Concat(subcategorieschild);
+                        subcategories.AddRange(subcategorieschild);
                     }
                 }
 
                 // foreach
-                return (List<Category>)finalSubcategories;
+                return (List<Category>)subcategories;
             }
             return null;
 

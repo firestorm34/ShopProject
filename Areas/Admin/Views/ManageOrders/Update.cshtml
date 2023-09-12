@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-8 offset-2">
 
-            <form method="post" asp-action="Update">
+            <form method="post" asp-action="Update" asp-area="Admin">
                 <h1> Change Order Status</h1>
                 <input type="hidden" asp-for="Id" />
                 <select asp-items="Html.GetEnumSelectList<Status>()" asp-for="Status"></select>

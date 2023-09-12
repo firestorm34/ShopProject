@@ -27,7 +27,7 @@ namespace ShopProject.Controllers
             ViewBag.IsLiked = new List<bool>();
             foreach ( var likedgood in likedgoods.ToList())
             {
-                var good = await unit.GoodRepository.Get(likedgood.GoodId);
+                var good = await unit.GoodRepository.GetAsync(likedgood.GoodId);
                 ViewBag.IsLiked.Add(true);
                 Goods.Add(good);
             }
@@ -49,14 +49,14 @@ namespace ShopProject.Controllers
         public async Task<IActionResult> LikeFromIndexGood(int good_id)
         {
             await Like(good_id);
-            var good = await unit.GoodRepository.Get(good_id);
+            var good = await unit.GoodRepository.GetAsync(good_id);
             return RedirectToAction("Index", "Good", new { category_id = good.CategoryId });
         }
 
         public async Task<IActionResult> DislikeFromIndexGood(int good_id)
         {
             await Dislike(good_id);
-            var good = await unit.GoodRepository.Get(good_id);
+            var good = await unit.GoodRepository.GetAsync(good_id);
             return RedirectToAction("Index", "Good", new { category_id = good.CategoryId });
         }
 
@@ -86,7 +86,7 @@ namespace ShopProject.Controllers
 
         public async Task Like(int good_id)
         {
-            await unit.LikedGoodRepository.Add(new LikedGood { GoodId = good_id, UserId = unit.CurrentUser.Id });
+            await unit.LikedGoodRepository.AddAsync(new LikedGood { GoodId = good_id, UserId = unit.CurrentUser.Id });
             await unit.SaveAsync();
  
         }
@@ -95,7 +95,7 @@ namespace ShopProject.Controllers
             var likedgood = await unit.LikedGoodRepository.GetByGoodAndUserId(good_id, unit.CurrentUser.Id);
             if (likedgood != null)
             {
-                await unit.LikedGoodRepository.Delete(likedgood.Id);
+                await unit.LikedGoodRepository.DeleteAsync(likedgood.Id);
                 await unit.SaveAsync();
                 
             }

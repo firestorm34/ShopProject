@@ -10,7 +10,7 @@ namespace ShopProject.Models
         public int Id { get; set; }
         public int BasketId { get; set; }
         public int UserId { get; set; }
-        public int Adress { get; set; }
+        public string Adress { get; set; }
         public Status Status { get; set; }
         public decimal Cost { get; set; }
 

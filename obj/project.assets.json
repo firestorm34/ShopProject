@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0-windows10.0.19041": {
+    "net5.0": {
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -9507,7 +9507,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0-windows10.0.19041": [
+    "net5.0": [
       "IdentityModel >= 4.4.0",
       "Microsoft.AspNet.Identity.Core >= 2.2.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.10",
@@ -9539,15 +9539,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0-windows10.0.19041.0"
+        "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0-windows10.0.19041": {
-          "targetAlias": "net5.0-windows10.0.19041.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -9558,8 +9558,8 @@
       }
     },
     "frameworks": {
-      "net5.0-windows10.0.19041": {
-        "targetAlias": "net5.0-windows10.0.19041.0",
+      "net5.0": {
+        "targetAlias": "net5.0",
         "dependencies": {
           "IdentityModel": {
             "target": "Package",
@@ -9629,10 +9629,6 @@
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
             "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.19041.26, 10.0.19041.26]"
           }
         ],
         "frameworkReferences": {
@@ -9640,9 +9636,6 @@
             "privateAssets": "none"
           },
           "Microsoft.NETCore.App": {
-            "privateAssets": "all"
-          },
-          "Microsoft.Windows.SDK.NET.Ref": {
             "privateAssets": "all"
           }
         },
@@ -9655,10 +9648,10 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0-windows10.0.19041'. This package may not be fully compatible with your project.",
+      "message": "Package 'Microsoft.AspNet.Identity.Core 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Identity.Core",
       "targetGraphs": [
-        "net5.0-windows10.0.19041"
+        "net5.0"
       ]
     }
   ]

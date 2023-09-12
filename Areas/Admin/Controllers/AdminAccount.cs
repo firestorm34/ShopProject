@@ -46,6 +46,12 @@ namespace ShopProject.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = unit.UserRepository.GetByUserName(model.Email);
+                    if(user is null)
+                    {
+                        ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                        return View(model);
+                    }
+
                     var roles = await userManager.GetRolesAsync(user);
                     if (roles.Contains("Admin"))
                     {
@@ -57,7 +63,7 @@ namespace ShopProject.Areas.Admin.Controllers
                         if (result.Succeeded)
                         {
                             
-                             return View("Index");
+                             return RedirectToAction("Index");
                             
                         }
 

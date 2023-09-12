@@ -16,9 +16,10 @@ namespace ShopProject.Data
             this.context = context;
         }
 
-        public async Task<Basket> GetFromOrder(int basketid)
+        public async Task<Basket> GetByIdFromOrder(int basket_id)
         {
-            return await context.Baskets.FirstOrDefaultAsync(b => b.Id == basketid && b.IsInOrder == true);
+            return  await context.Baskets.Include(b=>b.User).FirstOrDefaultAsync(b => b.Id == basket_id && b.IsInOrder == true);
+
         }
 
         public Task<Basket> GetByUserId(int id)

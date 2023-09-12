@@ -1,55 +1,113 @@
 ﻿@model Good
+<body>
+    <link rel="stylesheet" href="~/css/DetailedGood.css">
+
+    <div class="small-container detailed-good" style="margin-bottom: 30px !important; margin-top: 30px !important">
+
+        <div class="myrow">
+            <div class="col2 image-wrapper">
+
+                @{ string imgSrc = null;
+                    if (Model.MainImage != null)
+                    {
+                        var base64 = Convert.ToBase64String(Model.MainImage);
+                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                }
+                <img src="@imgSrc"
+                     id="product-img" alt="" class="main-image">
+
+                @if (Model.Photos.Count > 0)
+                {
+                    <div class="small-img-row">
+                        @foreach (var photo in Model.Photos)
+                        {
+                            var base64 = Convert.ToBase64String(photo.Image);
+                            var smallImgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            <div class="small-img-col">
+                                <img src="@smallImgSrc" width="100%"
+                                     class="small-img">
+                            </div>
+                        }
+
+                    </div>
+                }
 
 
-<h1>  @Model.Name</h1>
-<div class="row">
-    <div class="col-lg-8 offset-2">
+            </div>
+            <div class="col2 right-side">
+                <p class="title"> @Model.Name</p>
 
 
+                @if (ViewBag.ShowLike == true)
+                {
+                    if (ViewBag.IsLiked == true)
+                    {
+                        <btn><a class=" liked-anchor" asp-action="DislikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id="@Model.Id"> Liked </a></btn>
+                    }
 
-        @Model.Manufacturer?.Name
-        @Model.Year
+                    else if (ViewBag.IsLiked == false)
+                    {
+                        <btn><a asp-action="LikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id=@Model.Id> Like </a></btn>
+                    }
+                }
 
-        @Model.Description
+                <p class="price"> @Model.Price $ </p>
+                <select class="select-color">
+                    <option value="">8/128 Gb</option>
+                    <option value="">8/256 Gb</option>
+                    <option value="">16/256 Gb</option>
+                </select>
+                @if (ViewBag.Available == true)
+                {
+                    <div style="display: flex;">
+                        <a class="btn btn-primary" asp-action="Buy" asp-controller="Good" asp-route-goodid="@Model.Id"> Buy</a>
+                    </div>
+                }
+                else
+                {
+                    <a class="btn btn-dark"> Not available!</a>
+                }
 
+                <div class="description" style="font-size: 16px;">
+                    <div> Manufacture: @Model.Manufacturer.Name</div>
+                    <div> Year: @Model.Year </div>
+                    <div>
+                        @Model.Description
+                    </div>
+                </div>
+            </div>
 
-
-
-        <div>
-            @foreach (var i in Model.Photos)
-            {
-                var base64 = Convert.ToBase64String(Model.Photos.First().Image);
-                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                <img class="goodimage" src="@imgSrc" />
-            }
         </div>
-        @Model.Price
-        @* <a asp-action="Buy" asp-controller="Good" asp-all-route-data="@(new Dictionary<string,string>{ {"Id",Model.Id.ToString()},
-        { "Price", Model.Price.ToString() } })"> Buy</a> *@
 
-        @if (ViewBag.IsLiked == true)
-        {
-            <btn><a class=" liked-anchor" asp-action="DislikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id="@Model.Id"> Liked </a></btn>
-        }
 
-        @if (ViewBag.IsLiked == false)
-        {
-    <btn><a asp-action="LikeFromDetailedGood" asp-controller="LikedGood" asp-route-good_id=@Model.Id> Like </a></btn>
-        }
 
-        @if (ViewBag.Available == true)
-        {
-            <a asp-action="Buy" asp-controller="Good" asp-route-goodid="@Model.Id"> Buy</a>
-        }
-        else
-        {
-            <a class="btn btn-dark"> Not available!</a>
-        }
-    </div>
-</div>
 
+</body>
+@* <a asp-action="Buy" asp-controller="Good" asp-all-route-data="@(new Dictionary<string,string>{ {"Id",Model.Id.ToString()},
+    { "Price", Model.Price.ToString() } })"> Buy</a> *@
 <style>
-    .goodimage{
+    .goodimage {
         width: 80%;
     }
 </style>
+@*<div class="small-container SuggestedGoods">
+        <div class="line" style="border: 2px solid #e9e9e9;"></div>
+        <div class="title" style="text-align:center; margin: auto;">
+            Suggested products:
+        </div>
+        <div class="myrow">
+
+            <div class="col4">
+                <img src="Good1img3.png" alt="">
+                <h4> Good 2</h4>
+                <div class="rating" style="color:orange">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>*@

@@ -22,21 +22,21 @@ namespace ShopProject.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> IndexAsync()
         {
-            var categories = await unit.CategoryRepository.GetAll();
+            var categories = await unit.CategoryRepository.GetAllAsync();
             return View(categories);
         }
 
 
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categories = await unit.CategoryRepository.GetAllForManage();
+            ViewBag.Categories = await unit.CategoryRepository.GetAllForManageAsync();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(Category category)
         {
-            await unit.CategoryRepository.Add(category);
+            await unit.CategoryRepository.AddAsync(category);
             await unit.SaveAsync();
             return RedirectToAction("Index", "Categories");
         }
@@ -45,7 +45,7 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(int category_id)
         {
-            await unit.CategoryRepository.Delete(category_id);
+            await unit.CategoryRepository.DeleteAsync(category_id);
             await unit.SaveAsync();
 
             return RedirectToAction("Index", "Categories");
@@ -54,9 +54,9 @@ namespace ShopProject.Areas.Admin.Controllers
 
         public async Task<IActionResult> Update(int category_id)
         {
-            Category category = await unit.CategoryRepository.Get(category_id);
+            Category category = await unit.CategoryRepository.GetAsync(category_id);
             
-            ViewBag.Categories = await unit.CategoryRepository.GetAllForManage();
+            ViewBag.Categories = await unit.CategoryRepository.GetAllForManageAsync();
             return View(category);
         }
 

@@ -15,7 +15,7 @@ namespace ShopProject.Data
             db = context;
         }
 
-        public async override Task<Good> Get(int id)
+        public async override Task<Good> GetAsync(int id)
         {
 
             var d = await db.Goods.Include(good => good.Manufacturer).Include(good => good.Photos).
@@ -33,7 +33,7 @@ namespace ShopProject.Data
         //    return goods;
         //}
 
-        public async override Task<List<Good>> GetAll()
+        public async override Task<List<Good>> GetAllAsync()
         {
             var e = db.Goods.Include(good => good.Manufacturer).Include(good => good.Photos)
                  .Include(g => g.GoodAtStock).Where(g => g.IsArchieved == false).AsEnumerable();
@@ -42,9 +42,11 @@ namespace ShopProject.Data
             return e.ToList();
         }
 
-        public async Task<List<Good>> GetByName(string name)
+        public async Task<List<Good>> GetByNameAsync(string name)
         {
-            return await db.Goods.Where(c => c.Name.StartsWith(name)).ToListAsync();
+            var e =  await db.Goods.Where(c => c.Name.Contains(name)).ToListAsync();
+            
+            return e;
         }
         
 

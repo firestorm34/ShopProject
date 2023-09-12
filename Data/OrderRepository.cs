@@ -17,12 +17,12 @@ namespace ShopProject.Data
             this.context = context;
         }
 
-        public override async Task<List<Order>> GetAll()
+        public override async Task<List<Order>> GetAllAsync()
         {
             return await context.Orders.Include(o => o.User).ToListAsync();
         }
 
-        public override Task<Order> Get(int id)
+        public override Task<Order> GetAsync(int id)
         {
             return context.Orders.Include(o=>o.User).FirstOrDefaultAsync(o=>o.Id == id);
         }

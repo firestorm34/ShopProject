@@ -5,14 +5,14 @@
 
 <div class="container" style="flex:auto">
     <div class=" row">
-        <a class="btn-sm btn-outline-secondary" asp-controller="Manufacturers" asp-action="Create"> Create new</a>
+        <a class="btn-sm btn-info add" asp-controller="Manufacturers" asp-action="Create"> Create </a>
     </div>
     <div class="row">
         <div class="col-lg-8 offset-2">
             @foreach (var d in Model)
 
             {
-
+                <div class="form-group" style="margin-bottom:12px;">
                 <div class="good-name">
                     <label>Name: @d.Name</label>
 
@@ -22,12 +22,25 @@
 
                 <a class="btn-sm btn-danger" asp-controller="Manufacturers" asp-action="Delete"
                    asp-route-manufacturer_id=@d.Id> Delete</a>
-
+                </div>
 
             }
         </div>
 
     </div>
 </div>
+<style>
+    a{
+        text-decoration:none;
+    }
 
+
+    .add {
+        width: 75px !important;
+        text-align: center;
+        height: 28px !important;
+        color: white;
+        background: #33b76f;
+    }
+</style>
 

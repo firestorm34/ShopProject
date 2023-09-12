@@ -33,11 +33,11 @@
     "platform": "x64",
     "allowUnsafe": false,
     "warningsAsErrors": false,
-    "optimize": true,
+    "optimize": false,
     "keyFile": "",
     "emitEntryPoint": true,
     "xmlDoc": false,
-    "debugType": "portable"
+    "debugType": "embedded"
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {

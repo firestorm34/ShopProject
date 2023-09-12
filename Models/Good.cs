@@ -25,7 +25,10 @@ namespace ShopProject.Models
         public int Year { get; set; }
         public int CategoryId { get; set; }
         public byte[] MainImage { get; set; }
+
         public bool IsArchieved { get; set; }
+
+
         public virtual Category Category { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual GoodAtStock GoodAtStock { get; set; }

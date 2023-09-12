@@ -21,12 +21,7 @@ namespace ShopProject.Controllers
            this.signInManager = signInManager;
            
         }
-        public AccountController(UserManager<User> userManager)
-        {
-            this.userManager = userManager;
-          
-
-        }
+       
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -158,15 +153,11 @@ namespace ShopProject.Controllers
                 {
 
                     
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) &&
-                        Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
+                   
+                                      
+                    
                         return RedirectToAction("Index", "Home");
-                    }
+                    
                 }
                 else
                 {

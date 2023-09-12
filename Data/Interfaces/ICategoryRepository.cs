@@ -10,7 +10,7 @@ namespace ShopProject.Data.Interfaces
     {
         public  List<Category> GetChildCategories(int id);
 
-        public   Task<List<Category>> GetAllForManage();
+        public   Task<List<Category>> GetAllForManageAsync();
 
         public List<Category> GetByParentCategory(int id);
 

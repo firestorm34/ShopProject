@@ -1,0 +1,207 @@
+﻿html {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+}
+
+body {
+    background-color: #ffffff !important;
+    font-size: 16px;
+}
+
+.myrow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Variables for IMG SIZE */
+:root {
+    --main-image-size: 0px;
+    --main-image-lg: 38%;
+    --main-image-md: 66%;
+    --main-image-sm: 100%;
+}
+
+.small-container {
+    padding-left: 25px;
+    padding-right: 25px;
+    max-width: 1080px !important;
+    margin: auto;
+}
+
+.btn-buy:hover {
+    background-color: rgba(255, 166, 0, 0.849) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.col4 {
+    flex-basis: 21%;
+    margin: 2%;
+    min-width: 200px;
+    padding-top: 15px;
+    flex-grow: 1 !important;
+    height: 380px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 2px solid #e9e9e9;
+}
+
+.good-wrapper {
+    max-width: 300px;
+    border: 2px solid #e9e9e9 !important;
+}
+
+.col4 h4 {
+    text-align: center;
+}
+
+.col4 .rating {
+    text-align: center;
+}
+
+.col4 img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.small-img-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.small-img-col {
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+.col2 {
+    width: var(--main-image-size) !important;
+    padding: calc(5px + 0.5vw) !important;
+    padding-right: calc(5px + 0.2vw) !important;
+}
+
+.main-image {
+    height: calc(270px + 10vw) !important;
+    object-fit: contain;
+    width: 100%;
+    border: 2px solid #e9e9e9;
+}
+
+.col4 img {
+    height: 280px;
+}
+
+@media (min-width:900px) {
+    :root {
+        --main-image-size: var(--main-image-lg) !important;
+    }
+}
+
+@media(max-width:900px) {
+    .main-image {
+        height: calc(280px + 16vw) !important;
+        padding-bottom: -10px;
+    }
+
+    html {
+        font-size: 14px !important;
+    }
+
+    .good-wrapper {
+        max-width: 250px;
+    }
+
+    :root {
+        --main-image-size: var(--main-image-md) !important;
+    }
+}
+
+
+
+@media (max-width:600px) {
+    .main-image {
+        height: calc(330px + 5vw) !important;
+    }
+
+    html {
+        font-size: 14px !important;
+    }
+
+    :root {
+        --main-image-size: var(--main-image-sm) !important;
+    }
+}
+
+
+.right-side {
+    padding-left: 5px !important;
+}
+
+.btn {
+    border-radius: 10px !important;
+    width: calc(65px + 5vw) !important;
+    min-width: 100px;
+}
+
+.right-side input[type="number"] {
+    margin-right: calc(10px + 1vw);
+    width: 40px;
+    min-width: 40px;
+    outline: none;
+}
+
+.right-side > * {
+    margin-bottom: 2px;
+    margin-top: calc(10px + 0.3vw);
+    display: block;
+}
+
+.right-side select {
+    width: calc(65px + 5vw) !important;
+    display: block;
+    padding: 8px 12px;
+    min-width: 122px;
+    width: 50%;
+    border-radius: 4px !important;
+    border: 1px solid #234bff;
+    box-shadow: 0 1px 1px 0 #234bff !important;
+}
+
+.row {
+    flex-wrap: wrap;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/*#TO DISABLE ARROWS IN INPUT TEXT*/
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+    appearance: textfield;
+}
+
+
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        display: none;
+    }
+/*#endregion RegionName*/
