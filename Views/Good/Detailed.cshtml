@@ -1,7 +1,11 @@
 ﻿@model Good
-<body>
-    <link rel="stylesheet" href="~/css/DetailedGood.css">
 
+
+<body>
+   
+    @section Internal_Links{
+        <link rel="stylesheet" href="~/css/DetailedGood.css" />
+    }
     <div class="small-container detailed-good" style="margin-bottom: 30px !important; margin-top: 30px !important">
 
         <div class="myrow">
@@ -84,13 +88,16 @@
 
 
 </body>
+@section Scripts{
+    <script type="text/javascript" src="~/js/DetailedGood.js"></script>
+    }
 @* <a asp-action="Buy" asp-controller="Good" asp-all-route-data="@(new Dictionary<string,string>{ {"Id",Model.Id.ToString()},
     { "Price", Model.Price.ToString() } })"> Buy</a> *@
-<style>
+@*<style>
     .goodimage {
         width: 80%;
     }
-</style>
+</style>*@
 @*<div class="small-container SuggestedGoods">
         <div class="line" style="border: 2px solid #e9e9e9;"></div>
         <div class="title" style="text-align:center; margin: auto;">

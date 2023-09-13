@@ -8,9 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/Main.css">
 </head>
 <body>
-    <link rel="stylesheet" href="~/css/Main.css">
+    
 
     <section class="image-section">
         <div class="main-image-wrapper ">
@@ -37,7 +38,7 @@
                         var base64 = Convert.ToBase64String(item.MainImage);
                         imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                     }
-                    <div class=" col-3  good-wrap  ">
+                    <div class="col-3  good-wrap">
                         <div class="good-item">
                             <div class="image-wrapper">
                                 <img src="@imgSrc" alt="Good Image">
@@ -52,11 +53,32 @@
                             </div>
 
                             <p class="price"> @item.Price $</p>
-                            <div class="detail_link">
-                                <a class="good-detail-link"
-                                   href="/Good/Detailed?good_id=5"> Detailed</a>
+                            <div class="detail_link"> <a class="good-detail-link"
+                            href="/Good/Detailed?good_id=@item.Id"> Detailed</a>
                             </div>
                             <a class="btn  btn-buy">Buy</a>
+
+                            @if(ViewBag.Likes.ShowLike == true) {
+
+                            if (ViewBag.Likes.IsLiked[@item.Id] == false)
+                            {
+
+                            <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@item.Id> Like </a></btn>
+
+                            }
+
+                            if (ViewBag.Likes.IsLiked[@item.Id] == true)
+                            {
+
+                            <btn>
+                                <a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
+                           asp-route-good_id="@item.Id"> Liked </a>
+                            </btn>
+
+                            }
+                            
+                            }
+                            
                         </div>
                     </div>
                 }

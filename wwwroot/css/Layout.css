@@ -2,22 +2,24 @@
 
 @media(max-width:900px) {
     .hide-li {
-        display: none;
+        display: none !important;
     }
 
     #dropdown-open {
-        display: block;
+        display: block ;
     }
 
     .dropdown-elem i {
         font-size: 20px;
         padding: 2px;
     }
+    
 }
 
 @media(min-width:900px) {
     #dropdown-wrapper {
         display: none !important;
+       
     }
 
     #dropdown-close {
@@ -105,6 +107,7 @@ dropdown-block.adropbtn {
 }
 
 #dropdown-close {
+    padding-right: 12px !important;
     display: none;
     top: 12px;
     right: 12px;
@@ -133,7 +136,7 @@ dropdown-block.adropbtn {
 
 #dropdown-wrapper {
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     display: none;
     width: 100vw;
     height: 100vh;
@@ -146,7 +149,7 @@ dropdown-block.adropbtn {
     left: 0;
     width: 100%;
     background: white;
-    z-index: 3;
+    z-index: 6;
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0px 5px 7px 0px rgba(128, 128, 128, 0.5)
 }
@@ -159,10 +162,12 @@ dropdown-block.adropbtn {
     width: 100%;
 }
 
-
-    .dropdown-elem > * {
-        height: inherit !important;
-    }
+.adropbtn{
+    text-decoration: none;
+}
+.dropdown-elem > * {
+    height: inherit !important;
+}
 
     .dropdown-elem a {
         text-align: center;
@@ -177,10 +182,10 @@ dropdown-block.adropbtn {
     justify-content: center;
     align-content: center;
 }
-
-#dropdown-open {
-    display: none;
+.anchor-wrapper > a{
+    text-decoration: none;
 }
+
 
 .account-dropdown-parent {
     position: relative;
@@ -195,7 +200,7 @@ dropdown-block.adropbtn {
     text-align: center;
     width: 100%;
     background-color: white;
-    z-index: 5;
+    z-index: 7;
     border-radius: 0px 0px 10px 10px
 }
 
@@ -219,7 +224,7 @@ dropdown-block.adropbtn {
     top: 0;
     left: 0;
     border-radius: 10px;
-    z-index: 3;
+    z-index: 5;
     background-color: #f6f6f6;
     transition: 1s;
     display: none;

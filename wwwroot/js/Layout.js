@@ -35,7 +35,9 @@
     });
 
     let form = document.getElementById("Search-form");
-    document.getElementById("input-anchor").addEventListener("click", function () {
+    let a = document.getElementById("input-anchor");
+    console.log(a);
+    a.addEventListener("click", function () {
         form.submit();
     });
 
