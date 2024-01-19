@@ -1,0 +1,156 @@
+﻿
+@model List<Good>
+<div class="row">
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+
+        {
+            string imgSrc = null;
+            if (item.MainImage != null)
+            {
+                var base64 = Convert.ToBase64String(item.MainImage);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <div class="col-3  good-wrap">
+                <div class="good-item">
+                    <div class="image-wrapper">
+                        <img src="@imgSrc" alt="Good Image">
+                    </div>
+                    <p class="Name"> @item.Name</p>
+                    <div class="rating" style="color:orange">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                    </div>
+
+                    <p class="price"> @item.Price $</p>
+                    <div class="detail_link">
+                        <a class="good-detail-link"
+                   href="/Good/Detailed?good_id=@item.Id"> Detailed</a>
+                    </div>
+                    <a class="btn  btn-buy">Buy</a>
+
+                    @if (ViewBag.Likes.ShowLike == true && ViewBag.Likes.IsLiked!=null)
+                    {
+                        string s = "";
+                        if (ViewBag.Likes.IsLiked == null )
+                        {
+
+                        }
+                        else if (ViewBag.Likes.IsLiked[@item.Id] == false)
+                        {
+
+                            <btn><a asp-action="LikeFromIndexHome" asp-controller="LikedGood" asp-route-good_id=@item.Id
+                   asp-route-controllername="@ViewData["Controller"]" asp-route-actionname="@ViewData["Action"]">
+                                <img style="width: 33px !important;" src="~/Images/NotLikedIcon.png">
+                            </a>
+                            </btn>
+
+                        }
+
+                        else if (ViewBag.Likes.IsLiked[@item.Id] == true)
+                        {
+
+                            <btn>
+                                <a class=" liked-anchor" asp-action="DislikeFromIndexHome" asp-controller="LikedGood"
+                   asp-route-good_id="@item.Id" asp-route-controllername="Home" asp-route-actionname="Index">
+                                    <img style="width: 33px !important; " src="~/Images/LikedIcon.png">
+                                </a>
+                            </btn>
+
+                        }
+
+                    }
+
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
+    @if (Model is not null)
+    {
+        int i = 0;
+        foreach (var good in Model)
+        {
+            string imgSrc = null;
+            if (good.MainImage != null)
+            {
+                var base64 = Convert.ToBase64String(good.MainImage);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <div class="good-item">
+                <div class="image-wrapper">
+                    <img src="Good1.png" alt="">
+                </div>
+                <p class="Name"> @good.Name</p>
+                <div class="rating" style="color:orange">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+
+                <p class="price"> @good.Price  $</p>
+                <div class="detail_link">
+                    <a class="good-detail-link"
+               href="/Good/Detailed?good_id=@good.Id"> Detailed</a>
+                </div>
+                <a class="btn  btn-buy">Buy</a>
+            </div>
+
+
+            if (ViewBag.Likes.ShowLike == true)
+            {
+                if (ViewBag.Likes.IsLiked[i] == false)
+                {
+
+                    <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@good.Id> Like </a></btn>
+
+                }
+                if (ViewBag.Likes.IsLiked[i] == true)
+                {
+
+                    <btn>
+                        <a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
+           asp-route-good_id="@good.Id"> Liked </a>
+                    </btn>
+
+                }
+                i++;
+            }
+
+        }
+    }
+</div>*@

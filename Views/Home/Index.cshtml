@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="~/css/Main.css">
 </head>
 <body>
-    
 
+    <div>
+        @if (ViewBag.ErrorMesssage!=null){
+        <h1>ViewBag.ErrorMessage</h1>
+        }
+    </div>
     <section class="image-section">
         <div class="main-image-wrapper ">
 
@@ -27,63 +31,14 @@
     </section>
 
     <div class=" small-container">
-        <div class="row">
-            @if(Model!=null){
-                foreach (var item in Model)
-
-                {
-                    string imgSrc = null;
-                    if (item.MainImage != null)
-                    {
-                        var base64 = Convert.ToBase64String(item.MainImage);
-                        imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                    }
-                    <div class="col-3  good-wrap">
-                        <div class="good-item">
-                            <div class="image-wrapper">
-                                <img src="@imgSrc" alt="Good Image">
-                            </div>
-                            <p class="Name"> @item.Name</p>
-                            <div class="rating" style="color:orange">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-
-                            <p class="price"> @item.Price $</p>
-                            <div class="detail_link"> <a class="good-detail-link"
-                            href="/Good/Detailed?good_id=@item.Id"> Detailed</a>
-                            </div>
-                            <a class="btn  btn-buy">Buy</a>
-
-                            @if(ViewBag.Likes.ShowLike == true) {
-
-                            if (ViewBag.Likes.IsLiked[@item.Id] == false)
-                            {
-
-                            <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@item.Id> Like </a></btn>
-
-                            }
-
-                            if (ViewBag.Likes.IsLiked[@item.Id] == true)
-                            {
-
-                            <btn>
-                                <a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
-                           asp-route-good_id="@item.Id"> Liked </a>
-                            </btn>
-
-                            }
-                            
-                            }
-                            
-                        </div>
-                    </div>
-                }
-            }
-        </div>
+        @(await Html.PartialAsync("GoodItemPartialView",
+            Model,
+            new ViewDataDictionary(ViewData)
+        {
+        { "Controller","Home"  },
+        { "Action","Index"  }
+        }))
+     
     </div>
 
 </body>

@@ -21,13 +21,13 @@ namespace ShopProject.Controllers
         public async Task<IActionResult> Index()
         {
             var history = await unit.HistoryRepository.GetByUserId(unit.CurrentUser.Id);
-            var historyelements = unit.HistoryElementRepository.GetAllByHistoryId( history.Id);
+            var historyElements = unit.HistoryElementRepository.GetAllByHistoryId( history.Id);
             List<Good> Goods = new List<Good>();
             ViewBag.IsLiked = new List<bool>();
-            foreach(var historyelement in historyelements)
+            foreach(var historyElement in historyElements)
             {
 
-                var good_id = historyelement.ViwedGoodId;
+                var good_id = historyElement.ViwedGoodId;
                 var good = await unit.GoodRepository.GetAsync(good_id);
                 if (good != null)
                 {
@@ -44,10 +44,10 @@ namespace ShopProject.Controllers
                 }
                 if(good== null)
                 {
-                   await unit.HistoryElementRepository.DeleteAsync(historyelement.Id);
+                   await unit.HistoryElementRepository.DeleteAsync(historyElement.Id);
                 }
             }
-
+           
             return View(Goods);
         }
     }

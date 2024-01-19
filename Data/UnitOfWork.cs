@@ -10,28 +10,24 @@ using System.Threading.Tasks;
 
 namespace ShopProject.Data
 {
+    
     public class UnitOfWork : IUnitOfWork
     {
         private ShopContext context;
         private SignInManager<User> signInManager;
         private UserManager<User> userManager;
-        IServiceScopeFactory serviceScopeFactory;
-        public User? CurrentUser {
+        public virtual User CurrentUser {
             get { return context.Users.FirstOrDefault(u => u.UserName == signInManager.Context.User.Identity.Name); }
         }
-        public UnitOfWork()
-        {
-
-        }
-        public UnitOfWork(ShopContext _context, SignInManager<User> _signInManager, UserManager<User> _userManager,
-             IServiceScopeFactory serviceScopeFactory)
+        public UnitOfWork() {}
+        public UnitOfWork(ShopContext _context, SignInManager<User> _signInManager, UserManager<User> _userManager)
         {
             context = _context;
             signInManager = _signInManager;
             userManager = _userManager;
-            this.serviceScopeFactory = serviceScopeFactory;
         }
-        #region Variables for repositories
+
+        #region Variables for Repositories Interfaces
         IGoodRepository goodRepository;
         IManufactureRepository manufacturerRepository;
         IOrderRepository orderRepository;
@@ -51,27 +47,27 @@ namespace ShopProject.Data
 
         #region Properties for repositories
         public virtual IUserRepository UserRepository { get => userRepository == null ? new UserRepository(context) : userRepository; }
-        public IGoodInBasketRepository GoodInBasketRepository { get => goodInBasketRepository == null ?
+        public virtual IGoodInBasketRepository GoodInBasketRepository { get => goodInBasketRepository == null ?
                 new GoodInBasketRepository(context) : goodInBasketRepository; }
-        public IBasketRepository BasketRepository { get => basketRepository == null ? new BasketRepository(context) : basketRepository; }
-        public IAdminRepository AdminRepository { get => adminRepository == null ? new AdminRepository(context) : adminRepository; }
-        public ICategoryRepository CategoryRepository { get => categoryRepository == null ? new CategoryRepository(context) : categoryRepository; }
-        public IGoodAtStockRepository GoodAtStockRepository { get => goodAtStockRepository == null ?
+        public virtual IBasketRepository BasketRepository { get => basketRepository == null ? new BasketRepository(context) : basketRepository; }
+        public virtual IAdminRepository AdminRepository { get => adminRepository == null ? new AdminRepository(context) : adminRepository; }
+        public virtual ICategoryRepository CategoryRepository { get => categoryRepository == null ? new CategoryRepository(context) : categoryRepository; }
+        public virtual IGoodAtStockRepository GoodAtStockRepository { get => goodAtStockRepository == null ?
               new GoodAtStockRepository(context) : goodAtStockRepository;
         }
         
-        public ILikedGoodRepository LikedGoodRepository { get => likedGoodRepository == null 
+        public virtual ILikedGoodRepository LikedGoodRepository { get => likedGoodRepository == null 
                 ? new LikedGoodRepository(context) : likedGoodRepository; }
 
-        public IHistoryElementRepository HistoryElementRepository { get => historyElementRepository == null ?
+        public virtual IHistoryElementRepository HistoryElementRepository { get => historyElementRepository == null ?
         new HistoryElementRepository(context) : historyElementRepository;
         }
 
-        public IHistoryRepository HistoryRepository { get => historyRepository == null ?
+        public virtual IHistoryRepository HistoryRepository { get => historyRepository == null ?
          new HistoryRepository(context) : historyRepository;
         }
 
-        public IOrderRepository OrderRepository
+        public virtual IOrderRepository OrderRepository
         {
             get
             {
@@ -84,7 +80,7 @@ namespace ShopProject.Data
 
             }
         }
-        public IGoodRepository GoodRepository {
+        public virtual IGoodRepository GoodRepository {
             get {
 
                 if (goodRepository == null)
@@ -95,7 +91,7 @@ namespace ShopProject.Data
 
             }
         }
-        public IManufactureRepository ManufacturerRepository
+        public virtual IManufactureRepository ManufacturerRepository
         {
             get
             {
@@ -116,14 +112,10 @@ namespace ShopProject.Data
         {
             if (signInManager.Context.User.Identity.IsAuthenticated)
             {
-                using (var scope = serviceScopeFactory.CreateScope())
-                {
-                    var ctx = scope.ServiceProvider.GetRequiredService<ShopContext>();
 
 
-
-                    User user = ctx.Users.FirstOrDefault(u => u.UserName == signInManager.Context.User.Identity.Name);
-                    var basket = ctx.Baskets.Where(b => b.IsInOrder == false).
+                    User user = context.Users.FirstOrDefault(u => u.UserName == signInManager.Context.User.Identity.Name);
+                    var basket = context.Baskets.Where(b => b.IsInOrder == false).
                     FirstOrDefault(b => b.UserId == user.Id);
 
                     if (basket != null)
@@ -134,7 +126,7 @@ namespace ShopProject.Data
                     {
                         return 0;
                     }
-                }
+                
             }
             else
             {
@@ -165,12 +157,7 @@ namespace ShopProject.Data
             context.Dispose();
         }
 
-
-        public ShopContext GiveContext()
-        {
-            return this.context;
-        }
-        public void Save()
+        public virtual void Save()
         {
              context.SaveChanges();
         }

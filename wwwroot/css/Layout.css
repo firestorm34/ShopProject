@@ -1,4 +1,7 @@
 ﻿
+#dropdown-close-wrapper {
+    display: none !important;
+}
 
 @media(max-width:900px) {
     .hide-li {
@@ -22,10 +25,7 @@
        
     }
 
-    #dropdown-close {
-        display: none !important;
-    }
-
+   
     #dropdown-open {
         display: none !important;
     }
@@ -39,10 +39,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 .category-li {
     position: relative;
 }
 
+
+.form-group {
+    margin-top:15px;
+}
 /* #region Nav*/
 .nav-container {
     display: flex;
@@ -108,7 +114,6 @@ dropdown-block.adropbtn {
 
 #dropdown-close {
     padding-right: 12px !important;
-    display: none;
     top: 12px;
     right: 12px;
     font-size: 2rem !important;
@@ -288,7 +293,7 @@ dropdown-block.adropbtn {
     background-color: #f9f9f9;
     min-width: fit-content;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 5;
     left: 0;
     top: 40px;
 }

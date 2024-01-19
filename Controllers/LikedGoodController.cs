@@ -18,7 +18,12 @@ namespace ShopProject.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (unit.CurrentUser is null)
+            {
+                return View();
+            }
             var likedgoods = await unit.LikedGoodRepository.GetAllByUserId(unit.CurrentUser.Id);
+           
             if (likedgoods == null)
             {
                 return View();
@@ -32,6 +37,18 @@ namespace ShopProject.Controllers
                 Goods.Add(good);
             }
             return View(Goods);
+        }
+
+        public async Task<IActionResult> LikeFromIndexHome(int good_id, string ControllerName, string ActionName)
+        {
+            await Like(good_id);
+            return RedirectToAction(ActionName, ControllerName);
+        }
+
+        public async Task<IActionResult> DislikeFromIndexHome(int good_id, string ControllerName, string ActionName)
+        {
+            await Dislike(good_id);
+            return RedirectToAction(ActionName, ControllerName);
         }
 
         public async Task<IActionResult> LikeFromIndexLikedGood(int good_id)

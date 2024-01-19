@@ -15,7 +15,7 @@ namespace ShopProject.Controllers
     {
         private readonly ILogger<HomeController> logger;
         private readonly UnitOfWork unit;
-        
+        public dynamic Likes = new ExpandoObject();
         public HomeController(ILogger<HomeController> logger, UnitOfWork unit)
         {
             this.logger = logger;
@@ -23,7 +23,7 @@ namespace ShopProject.Controllers
            
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ErrorMessage=null)
         {
             
             List<Good> goods = await unit.GoodRepository.GetAllAsync();
@@ -49,6 +49,10 @@ namespace ShopProject.Controllers
                 return View();
             }
             ViewBag.Likes = await GetLikesForGoods(neededgoods);
+            if (ErrorMessage is not null)
+            {
+                ViewBag.ErrorMessage = ErrorMessage;
+            }
             return View(neededgoods);
 
         }
@@ -66,7 +70,7 @@ namespace ShopProject.Controllers
 
         public async Task<dynamic> GetLikesForGoods(IEnumerable<Good> neededgoods)
         {
-            dynamic Likes = new ExpandoObject();
+             Likes = new ExpandoObject();
             if (neededgoods==null || neededgoods.ToList().Count == 0)
             {
                 Likes.ShowLike = false;
@@ -97,6 +101,7 @@ namespace ShopProject.Controllers
 
                 Likes.ShowLike = false;
             }
+            
             var a = Likes.IsLiked;
             return Likes;
         }

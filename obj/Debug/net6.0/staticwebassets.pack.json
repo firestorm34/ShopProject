@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\.NET\\ShopProject\\wwwroot\\Images\\LikedIcon.png",
+      "PackagePath": "staticwebassets\\Images\\LikedIcon.png"
+    },
+    {
+      "Id": "C:\\.NET\\ShopProject\\wwwroot\\Images\\NotLikedIcon.png",
+      "PackagePath": "staticwebassets\\Images\\NotLikedIcon.png"
+    },
+    {
       "Id": "C:\\.NET\\ShopProject\\wwwroot\\Images\\fb.png",
       "PackagePath": "staticwebassets\\Images\\fb.png"
     },

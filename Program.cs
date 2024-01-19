@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-
+using Serilog;
+using Seq.Extensions.Logging;
 namespace ShopProject
 {
     public class Program
@@ -18,8 +19,9 @@ namespace ShopProject
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args).ConfigureAppConfiguration(AddAppCongiguration).ConfigureLogging(builder=> builder.AddConsole())
-            .ConfigureLogging(builder => builder.AddSeq())
+            Host.CreateDefaultBuilder(args).UseSerilog(new LoggerConfiguration()
+                .WriteTo.Seq("http://localhost:5341").CreateLogger() )
+            .ConfigureAppConfiguration(AddAppCongiguration)          
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     //Setting Kerstrel as main host and IIS as proxy server

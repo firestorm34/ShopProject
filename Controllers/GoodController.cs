@@ -25,10 +25,6 @@ namespace ShopProject.Controllers
           
         }
 
-
-
-       
-
         public async Task<IActionResult> Index(int category_id)
         {
             
@@ -50,8 +46,8 @@ namespace ShopProject.Controllers
             {
                 neededgoods = goods.Where(g => g.Category == category);
             }
-            ViewBag.Likes = GetLikesForGoods(neededgoods);
-            return View(neededgoods);
+            ViewBag.Likes = await GetLikesForGoods(neededgoods);
+            return View(neededgoods.ToList());
         }
 
         [HttpPost]
@@ -157,7 +153,7 @@ namespace ShopProject.Controllers
         {
             dynamic Likes = new ExpandoObject();
             Likes.ShowLike = true;
-            Likes.IsLiked = new List<bool>();
+            Likes.IsLiked = new Dictionary<int,bool>();
             if (unit.CurrentUser != null)
             {
 
@@ -166,11 +162,11 @@ namespace ShopProject.Controllers
                     var isliked = await unit.LikedGoodRepository.GetByGoodAndUserId(good.Id, unit.CurrentUser.Id);
                     if (isliked != null)
                     {
-                        Likes.IsLiked.Add(true);
+                        Likes.IsLiked.Add(good.Id,true);
                     }
                     else
                     {
-                        Likes.IsLiked.Add(false);
+                        Likes.IsLiked.Add(good.Id,false);
                     }
 
                 }

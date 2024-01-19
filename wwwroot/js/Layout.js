@@ -43,18 +43,17 @@
 
     let dropdown_wrapper = document.getElementById("dropdown-wrapper");
     let dropdown_open = document.getElementById("dropdown-open");
-    let dropdown_close = document.getElementById("dropdown-close");
+    let dropdown_close_wrapper = document.getElementById("dropdown-close-wrapper");
 
     document.getElementById("dropdown-open").addEventListener("click", function () {
         dropdown_open.style.display = "none";
     dropdown_wrapper.style.display = "block";
-    dropdown_close.style.display = "block";
+    dropdown_close_wrapper.style.display = "block !important";
     });
-
-    document.getElementById("dropdown-close").addEventListener("click", function () {
+document.getElementById("dropdown-close").addEventListener("click", function () {
         dropdown_open.style.display = "block";
     dropdown_wrapper.style.display = "none";
-    dropdown_close.style.display = "none";
+    dropdown_close_wrapper.style.display = "none !important";
     });
 
 

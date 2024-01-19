@@ -7,6 +7,10 @@ using ShopProject.Models;
 using Microsoft.AspNetCore.Identity;
 using ShopProject.ViewModels;
 using System.Security.Claims;
+using Serilog;
+using Serilog.Data;
+using Serilog.Core;
+
 namespace ShopProject.Controllers
 {
     public class AccountController : Controller
@@ -14,13 +18,15 @@ namespace ShopProject.Controllers
         string Changes = "";
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
-
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
-        {
-            this.userManager = userManager;
-           this.signInManager = signInManager;
-           
-        }
+        private ILogger logger;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
+            ILogger logger)
+            {
+                this.userManager = userManager;
+               this.signInManager = signInManager;
+                this.logger = logger;
+            
+            }
        
 
         [HttpGet]
@@ -38,7 +44,8 @@ namespace ShopProject.Controllers
                 if (Changes != "") { ViewBag.Alert = Changes; }
                 return View("Index",model);
             }
-            return null;
+            logger.Warning("User is not authenticated");
+            return RedirectToAction("Index","Home");
         }
 
         [HttpGet]
@@ -97,6 +104,8 @@ namespace ShopProject.Controllers
                 }
                 ModelState.AddModelError("", "Error! There is no such user!");
             }
+            logger.Warning("{controller}/{action}/{method} : Model is not valid! ",
+                "AccountControler", "Edit", "Post");
             return View("Edit",model);
         }
 
@@ -138,6 +147,11 @@ namespace ShopProject.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
+            var param = "PARAM1";
+            logger.Warning("I send login with Serilog {param}",param );
+            
+            
+            logger.Error("ERROR");
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
@@ -150,13 +164,8 @@ namespace ShopProject.Controllers
                 var result =
                     await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
-                {
-
-                    
-                   
-                                      
-                    
-                        return RedirectToAction("Index", "Home");
+                {              
+                    return RedirectToAction("Index", "Home");
                     
                 }
                 else

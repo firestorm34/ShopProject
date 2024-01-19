@@ -9,9 +9,9 @@ body {
 
 .good-item {
     border: 2px solid #e9e9e9;
-    /* background-color:  #f1f1f1 !important; 
-     border-radius: 6px;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.16); */
+    border-radius: 6px;
+   
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.16); 
     padding: calc(6px + 1.7vw);
     padding-left: calc(10px + 1.5vw);
     padding-right: calc(10px + 1.5vw);
@@ -27,6 +27,7 @@ body {
 }
 
 .image-section {
+    border-radius:15px;
     width: 100% !important;
     background-color: #f1f1f1 !important;
 }

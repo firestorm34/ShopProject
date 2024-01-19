@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Good>
+﻿@model List<Good>
 <link rel="stylesheet" href="~/css/Main.css" />
 @*<section class="image-section">
     <div class="main-image-wrapper ">
@@ -15,62 +15,16 @@
 
 
 <div style="color: red; margin-top:10px">@ViewBag.Error</div>
-<div class="container" style="flex:auto">
+ <div class=" small-container">
     
-    <div class="row">
-        @if(Model is not null){
-            int i = 0;
-            foreach (var good in Model)
-            {
-                string imgSrc = null;
-                if (good.MainImage != null)
-                {
-                    var base64 = Convert.ToBase64String(good.MainImage);
-                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                }
-                <div class="good-item">
-                <div class="image-wrapper">
-                    <img src="Good1.png" alt="">
-                </div>
-                <p class="Name"> @good.Name</p>
-                <div class="rating" style="color:orange">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-
-                <p class="price"> @good.Price  $</p>
-                <div class="detail_link"> <a class="good-detail-link"
-                   href="/Good/Detailed?good_id=@good.Id"> Detailed</a>
-                </div>
-                <a class="btn  btn-buy">Buy</a>
-                </div>
-            
-            
-                  if(ViewBag.Likes.ShowLike == true) { 
-                    if (ViewBag.Likes.IsLiked[i] == false)
-                    {
-
-                        <btn><a asp-action="LikeFromIndexGood" asp-controller="LikedGood" asp-route-good_id=@good.Id> Like </a></btn>
-
-                    }
-                    if (ViewBag.Likes.IsLiked[i] == true)
-                    {
-
-                        <btn>
-                            <a class=" liked-anchor" asp-action="DislikeFromIndexGood" asp-controller="LikedGood"
-               asp-route-good_id="@good.Id"> Liked </a>
-                        </btn>
-
-                    }
-                    i++;
-               }
-            
-           } 
-     }
-    </div>
+     @(await Html.PartialAsync("GoodItemPartialView",
+            Model,
+            new ViewDataDictionary(ViewData)
+        {
+        { "Controller","Good"  },
+        { "Action","Index"  }
+        }))
+     
 </div>
 
 

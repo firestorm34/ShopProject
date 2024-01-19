@@ -16,7 +16,8 @@ using ShopProject.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-
+using Serilog;
+using Seq.Extensions.Logging;
 namespace ShopProject
 {
     public partial class  Startup
@@ -34,6 +35,9 @@ namespace ShopProject
             services.AddControllersWithViews();
             string con = Configuration.GetConnectionString("DefaultConnection");
 
+            //services.AddLogging(
+            //});
+
             services.AddDbContext<ShopContext>(options => options.UseMySql(con, new MySqlServerVersion(new Version(8, 0, 11))));
             #region Repositories
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -42,7 +46,7 @@ namespace ShopProject
                 options.Password.RequireNonAlphanumeric = false;
             })
                 .AddEntityFrameworkStores<ShopContext>();
-
+            
             //services.AddTransient(typeof(UserManager<User>), typeof(MyUserManager));
             //services.AddScoped<CurrentUser>();
             #endregion
@@ -73,7 +77,7 @@ namespace ShopProject
            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-           
+          
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

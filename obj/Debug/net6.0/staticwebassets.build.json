@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "svTCNIBGzWlLbmB0kHkY1ye/1xWtUWu3HUaiBCgSXq8=",
+  "Hash": "q6EmgLcaSG7K02QXncKSB7WdPCRMLoTigKsqDaqXHrw=",
   "Source": "ShopProject",
   "BasePath": "_content/ShopProject",
   "Mode": "Default",
@@ -168,6 +168,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\inst.png"
+    },
+    {
+      "Identity": "C:\\.NET\\ShopProject\\wwwroot\\Images\\LikedIcon.png",
+      "SourceId": "ShopProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\.NET\\ShopProject\\wwwroot\\",
+      "BasePath": "_content/ShopProject",
+      "RelativePath": "Images/LikedIcon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\LikedIcon.png"
+    },
+    {
+      "Identity": "C:\\.NET\\ShopProject\\wwwroot\\Images\\NotLikedIcon.png",
+      "SourceId": "ShopProject",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\.NET\\ShopProject\\wwwroot\\",
+      "BasePath": "_content/ShopProject",
+      "RelativePath": "Images/NotLikedIcon.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\NotLikedIcon.png"
     },
     {
       "Identity": "C:\\.NET\\ShopProject\\wwwroot\\Images\\tg.png",
