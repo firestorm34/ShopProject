@@ -11,7 +11,8 @@ namespace ShopProject.Data.Interfaces
         
        public  Task<GoodInBasket> GetByGoodAndBasketId(int goodid, int basketid);
         public IEnumerable<GoodInBasket> GetAllByBasketId(int id);
-
+        public  void IncreaseGoodAmount(int goodid, int basketid);
+        public void DecreaseGoodAmount(int goodid, int basketid);
 
 
     }

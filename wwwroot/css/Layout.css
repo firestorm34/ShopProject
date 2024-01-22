@@ -1,7 +1,4 @@
 ﻿
-#dropdown-close-wrapper {
-    display: none !important;
-}
 
 @media(max-width:900px) {
     .hide-li {

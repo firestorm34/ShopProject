@@ -5,20 +5,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using ShopProject.Data;
 using ShopProject.Models;
+using NuGet.ContentModel;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace ShopProject.Controllers
 {
     public class BasketController : Controller
     {
         
         UnitOfWork unit;
-        
+        IServiceScopeFactory scopeFactory;
 
-        public BasketController(UnitOfWork unit)
+        //public BasketController(UnitOfWork unit)
+        //{
+        //    this.unit = unit;
+
+        //}
+        public BasketController(UnitOfWork unit, IServiceScopeFactory factory)
         {
             this.unit = unit;
+            this.scopeFactory = factory;
 
         }
-
 
         public async Task<IActionResult> Index()
         {
@@ -61,6 +69,7 @@ namespace ShopProject.Controllers
         {
             BasketViewModel model = new BasketViewModel();
             model.CanBuy = true;
+         
             var goodsinbasket = unit.GoodInBasketRepository.GetAllByBasketId(basket.Id);
             model.TotalSum = basket.TotalSum;
             model.UserId = unit.CurrentUser.Id;
@@ -90,14 +99,47 @@ namespace ShopProject.Controllers
 
         }
 
+        public async Task RecalculateTotalSum(int basketid)
+        {
+            using (var scope = scopeFactory.CreateScope())
+            {
+                UnitOfWork unitOfWork = scope.ServiceProvider.GetRequiredService<UnitOfWork>();
+                Basket basket = await unitOfWork.BasketRepository.GetByUserId(unitOfWork.CurrentUser.Id);
+                var goodsinbasket = unitOfWork.GoodInBasketRepository.GetAllByBasketId(basketid);
+                decimal totalSum = 0m;
+                foreach (var goodinbasket in goodsinbasket.ToList())
+                {
+                    goodinbasket.SumOfGoods = (goodinbasket.Good.Price * (decimal)goodinbasket.Amount);
+                    totalSum += goodinbasket.SumOfGoods;
+                }
+                basket.TotalSum = totalSum;
+                unitOfWork.BasketRepository.Update(basket);
+                await unitOfWork.SaveAsync();
+            }
+        }
+        
         public async Task<IActionResult> Plus(int goodid)
         {
-
+            Basket basket = await unit.BasketRepository.GetByUserId(unit.CurrentUser.Id);
+            if (basket != null)
+            {
+                unit.GoodInBasketRepository.IncreaseGoodAmount(goodid, basket.Id);
+                unit.Save();
+                await RecalculateTotalSum(basket.Id);
+            }
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Minus(int goodid)
         {
+            Basket basket = await unit.BasketRepository.GetByUserId(unit.CurrentUser.Id);
+            if (basket != null)
+            {
+                unit.GoodInBasketRepository.DecreaseGoodAmount(goodid,basket.Id);
+                unit.Save();
+                await RecalculateTotalSum(basket.Id);
+            }
+
             return RedirectToAction("Index");
         }
     }

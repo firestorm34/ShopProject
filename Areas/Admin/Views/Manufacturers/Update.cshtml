@@ -8,11 +8,11 @@
 <form asp-action="Update" asp-controller="Manufacturers">
     <div asp-validation-summary="All" class="text-danger"></div>
     <input type="hidden" asp-for="Id" />
-    <div style="margin-bottom = 14px;" class="form-group">
+    <div style="margin-bottom = 14px;" class="form-group" style="  margin-bottom: 10px">
         <label style="margin-bottom = 8px;" asp-for="Name" class="control-label"></label>
         <input type="text" asp-for="Name" class="form-control" />
     </div>
-    <div class="form-group" style="margin-top:15px !important;">
+    <div class="form-group" style="margin-top:15px !important;" style="  margin-bottom: 10px">
         <input type="submit" value="Обновить" class="btn btn-outline-secondary" />
     </div>
 </form>

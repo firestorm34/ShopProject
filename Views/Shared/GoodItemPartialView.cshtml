@@ -29,10 +29,10 @@
 
                     <p class="price"> @item.Price $</p>
                     <div class="detail_link">
-                        <a class="good-detail-link"
+                        <a class="good-detail-link" style="text-decoration: none;"
                    href="/Good/Detailed?good_id=@item.Id"> Detailed</a>
                     </div>
-                    <a class="btn  btn-buy">Buy</a>
+                    <a class="btn  btn-buy" asp-action="Buy" asp-controller="Good" asp-route-goodid="@item.Id">Buy</a>
 
                     @if (ViewBag.Likes.ShowLike == true && ViewBag.Likes.IsLiked!=null)
                     {

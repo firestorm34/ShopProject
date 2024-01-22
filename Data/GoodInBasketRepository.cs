@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityModel;
 using Microsoft.EntityFrameworkCore;
 using ShopProject.Data.Interfaces;
 using ShopProject.Models;
@@ -28,6 +29,28 @@ namespace ShopProject.Data
 
         }
 
+        public  void IncreaseGoodAmount(int goodid, int basketid)
+        {
+            
+            GoodInBasket goodInBasket = context.GoodInBaskets.FirstOrDefault(g => g.GoodId == goodid && g.BasketId== basketid);
+            if (goodInBasket != null )
+            {
+                goodInBasket.Amount++;
+                Update(goodInBasket);
+            }
+
+        }
+        public void DecreaseGoodAmount(int goodid, int basketid)
+        {
+
+            GoodInBasket goodInBasket = context.GoodInBaskets.FirstOrDefault(g => g.GoodId == goodid && g.BasketId == basketid);
+            if (goodInBasket != null)
+            {
+                goodInBasket.Amount--;
+                Update(goodInBasket);
+            }
+
+        }
         public  IEnumerable<GoodInBasket> GetAllByBasketId(int id)
         {
             return  context.GoodInBaskets.Include(g => g.Good).Where(g => g.BasketId == id);

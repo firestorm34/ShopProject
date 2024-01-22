@@ -6,10 +6,7 @@
         <div class="row">
             <div class="col-8">
 
-                <table class="table table-bordered">
-                    <thead>
-                        Goods in Basket
-                    </thead>
+                <table class="table table-bordered" style="outline:2px solid #eacdf1" >
                     <tr>
                         <th>
                             Name
@@ -29,15 +26,20 @@
                     {
                         if (Model.IsAvailable[i] == false)
                         {
-                            <tr style="background-color :red;">
+                            <tr style="background-color :#ff7171;;">
 
                                 <td> @Model.GoodNames[i]</td>
                                 <td>@Model.GoodPrices[i]</td>
                                 <td> @Model.GoodAmounts[i]</td>
                                 <td> @Model.SumOfGoods[i]</td>
 
-                                <td><a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><i class="bi bi-plus"></i>  </a></td>
-                                <td><a asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a></td>
+                                <td style="width: 95px;">
+                                    <a asp-action="Plus" style="text-decoration: none" asp-route-goodid="@Model.GoodId[i]"><img style="width:35px" src="~/Images/Plus.png">  </a>
+                                    <a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><img style="width:35px" src="~/Images/Minus.png">  </a>
+                                </td>
+                                <td style="display: flex;justify-content: center; border-right:none;">
+                                    <a class="btn btn-danger" asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a>
+                                    </td>
 
 
                             </tr>
@@ -51,27 +53,36 @@
                                 <td> @Model.GoodAmounts[i]</td>
                                 <td> @Model.SumOfGoods[i]</td>
 
-                                <td><a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><i class="bi bi-plus"></i>  </a></td>
-                                <td><a asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a></td>
+                                <td style="width: 95px;">
+                                    <a asp-action="Plus" style="text-decoration: none" asp-route-goodid="@Model.GoodId[i]"><img style="width:35px" src="~/Images/Plus.png">  </a>
+                                    <a asp-action="Minus" asp-route-goodid="@Model.GoodId[i]"><img style="width:35px" src="~/Images/Minus.png">  </a>
+                                </td>
+                                <td style="border-right: none;display: flex;justify-content: center;"><a class="btn btn-danger" asp-action="Delete" asp-route-goodid="@Model.GoodId[i]"> Delete </a>
+
+                            </td>
 
 
                             </tr>
                         }
                     }
-
+                    <tr style="margin:0px">
+                        <td> <p style="font:800;">Total Sum</p>  </td>
+                                <td style="border-right: none;text-align: center;">@Model.TotalSum</td>
+                                
+                                
+                            </tr>
                 </table>
 
             </div>
             <a asp-action="Plus"><i class="bi bi-dash"></i>  </a>
         </div>
-        <div class="text-md-center"> Total Sum: @Model.TotalSum</div>
         @if (Model.CanBuy == true)
         {
-            <a asp-action="Index" asp-controller="Order" asp-route-user_id="@Model.UserId"> Buy</a>
+            <a style="background-color:#fc8507; color: white" class="btn  btn-buy" asp-action="Buy" asp-controller="Good" asp-route-goodid="@Model.GoodId">Buy</a>
         }
         else
         {
-            <a class="btn bg-white"> You can't make order because one of goods in your basket is not available!</a>
+            <p style="color:red" class="btn bg-white"> You can't make order because one of goods in your basket is not available!</p>
         }
     </div>
 }

@@ -9,6 +9,7 @@ using ShopProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using System.Dynamic;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ShopProject.Controllers
 {
@@ -17,11 +18,13 @@ namespace ShopProject.Controllers
         UnitOfWork unit;
         UserManager<User> userManager;
         SignInManager<User> signInManager;
+        IServiceScopeFactory scopeFactory;
         public GoodController(UnitOfWork unit, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.unit = unit;
             this.userManager = userManager;
             this.signInManager = signInManager;
+
           
         }
 
@@ -59,7 +62,7 @@ namespace ShopProject.Controllers
                 ViewBag.Error = "There is not any good with that name";
                 return View("Index");
             }
-            ViewBag.Likes = GetLikesForGoods(neededgoods);
+            ViewBag.Likes = await GetLikesForGoods(neededgoods);
             return View("Index",neededgoods);
         }
 
@@ -83,7 +86,7 @@ namespace ShopProject.Controllers
                 await unit.HistoryElementRepository.AddAsync
                     (new HistoryElement { HistoryId = history.Id, ViwedGoodId = good_id });
                 unit.Save();
-                ViewBag.Likes = GetLikesForGoods(new []{good});
+                ViewBag.Likes = await GetLikesForGoods(new []{good});
             }
 
             ViewBag.Available = true;
@@ -138,7 +141,7 @@ namespace ShopProject.Controllers
 
                     await unit.SaveAsync();
                     return RedirectToAction("Detailed", "Good", new { good_id = good.Id });
-                    //HERE SHOULD BE CODE TO MARK BUYING GOOD!
+                   
 
                 }
                 return RedirectToAction("Detailed", "Good", new { good_id = good.Id });
@@ -154,6 +157,7 @@ namespace ShopProject.Controllers
             dynamic Likes = new ExpandoObject();
             Likes.ShowLike = true;
             Likes.IsLiked = new Dictionary<int,bool>();
+
             if (unit.CurrentUser != null)
             {
 

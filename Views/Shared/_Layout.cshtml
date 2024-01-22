@@ -53,8 +53,8 @@
                 <div class="navbar nav-container justify-content-between">
                     <ul class="navbar-nav " style="margin-right:15px !important; position:relative">
 
-                        <div class="dropdown-close-wrapper" style=" display:block; width: 32px;">
-                            <a id="dropdown-close">X</a>
+                        <div id="dropdown-close-wrapper" style=" display:block; width: 0px;">
+                            <a style="display:none;" id="dropdown-close">X</a>
                         </div>
 
                         <li class="nav-item" id="dropdown-open">
@@ -88,7 +88,7 @@
                         <form id="Search-form" method="post" style="width:100%;display: flex;/*! background: #f7f7f7; *//*! border-radius: 12px; *//*! border: none; *//*! transition: background .3s; *//*! Z-index: 2; */align-content: center;" asp-action="Search" asp-controller="Good">
                             <input class="Search-input" name="Search_text" type="text" placeholder="Search.." id="Search-input" style="border:none !important;flex-grow: 1;background: #f2f2f2;border-radius: 8px 0px 0px 8px;border: none;transition: background .3s;padding: 7px;padding-left: 14px;">
                             <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JLf8G04bNNMlgEuSY830Oquv3O0oiwt4NYnodC4pA1iJEoy2qXvEAYtJk29B1NskdMjO17GCJ80IRGttNRlPz5A0ENVoINjMK4NqzGFkZj4iQzSaEjEBA0djLtoEvufOnfsBjKHW5nsIQQqiOyQGSLkdUXVJzWOnNa-onSfYN3QJ1J2D-MctiWi1rlswrsJxA">
-                            <div style="border-radius: 0px 8px 8px 0px;background: #f2f2f2 !important;position: relative;flex-basis: 39px;min-width: 25px;padding-right: 14px !important;">
+                            <div id="Search-button" style="border-radius: 0px 8px 8px 0px;background: #f2f2f2 !important;position: relative;flex-basis: 39px;min-width: 25px;padding-right: 14px !important;">
 
                                 <a id="input-anchor" style="width: 60%;height: 60%;display: inline-block;position: absolute;transform: translate(-50%,-50%);left: 50%;top: 50%;">
                                     <svg width="17" height="17" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -160,9 +160,9 @@
                         Account <i class="fa fa-caret-down"></i>
                     </a>
                     <div id="account-dropdown-children" style="display: none;">
-                        <a asp-action="Index" asp-controller="Account"> Data</a>
-                        <a> Orders </a>
-                        <a asp-action="Logout" asp-controller="Account"> Logout</a>
+                        <a style="text-decoration:none" asp-action="Index" asp-controller="Account"> Data</a>
+                        <a style="text-decoration:none" > Orders </a>
+                        <a  style="text-decoration:none" asp-action="Logout" asp-controller="Account"> Logout</a>
                     </div>
                 </div>
                     

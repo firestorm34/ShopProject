@@ -6,13 +6,13 @@
         <div class="col-lg-8 offset-2">
 
             @{ int i = 0;}
-            @foreach (var d in Model)
+            @foreach (var item in Model)
 
             {
                 string imgSrc = null;
-                if (d.MainImage != null)
+                if (item.MainImage != null)
                 {
-                    var base64 = Convert.ToBase64String(d.MainImage);
+                    var base64 = Convert.ToBase64String(item.MainImage);
                     imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                 }
 
@@ -21,23 +21,25 @@
                         <img />
                     </div>
                     <div class="good-name">
-                        @d.Name
+                        @item.Name
                     </div>
                     <div class="good-price">
-                        @d.Price
+                        @item.Price
                     </div>
                     <div class="good-price">
                         <img src="@imgSrc" alt="Good Image" />
                     </div>
-                    <a class="good-detail-link" asp-controller="Good" asp-action="Detailed" asp-route-good_id=@d.Id> Detailed</a>
+                    <a class="good-detail-link" asp-controller="Good" asp-action="Detailed" asp-route-good_id=@item.Id> Detailed</a>
                 </div>
+ 
                 if (ViewBag.IsLiked[i] == true)
                 {
-
-                    <btn>
-                        <a class=" liked-anchor" asp-action="DislikeFromIndexLikedGood" asp-controller="LikedGood"
-                           asp-route-good_id="@d.Id"> Liked </a>
-                    </btn>
+                            <btn>
+                                <a class=" liked-anchor" asp-action="DislikeFromIndexHome" asp-controller="LikedGood"
+                   asp-route-good_id="@item.Id" asp-route-controllername="Home" asp-route-actionname="Index">
+                                    <img style="width: 33px !important; " src="~/Images/LikedIcon.png">
+                                </a>
+                            </btn>
 
                 }
                 i++;
