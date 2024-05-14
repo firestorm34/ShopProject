@@ -9,21 +9,21 @@ BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 
 ![1img](Attachments/ShopProject_1img.png)
 
-**Adding new product to basket**
+<h3> Adding new product to basket </h3>
 ![1img](Attachments/ShopProject_2img.png)
 
-### ADMIN PANEL
+## ADMIN PANEL
 
 ![1img](Attachments/ShopProject_4img.png)
 
 
-**Viewing existing users**
+<h3> Viewing existing users </h3>
 ![1img](Attachments/ShopProject_3img.png)
 
 
-### MOBILE VERSION
+## MOBILE VERSION
 
 ![1img](Attachments/ShopProject_5img.png)
 
-**Menu unwrapped**
+<h3>Menu unwrapped</h3>
 ![Menu_unwrapped](Attachments/ShopProject_6img.png)
