@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Serilog;
 using Serilog.Data;
 using Serilog.Core;
+using ShopProject.Data;
 
 namespace ShopProject.Controllers
 {
@@ -32,6 +33,7 @@ namespace ShopProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            
             if (User.Identity.IsAuthenticated)
             {
                 EditUserViewModel model = new();

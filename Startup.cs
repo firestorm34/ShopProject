@@ -44,6 +44,9 @@ namespace ShopProject
             services.AddScoped<UnitOfWork>();
             services.AddIdentity<User, Role>(options => {
                 options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            
             })
                 .AddEntityFrameworkStores<ShopContext>();
             
