@@ -9,7 +9,6 @@ Backend: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 ### ADMIN PANEL
 ![1img](Attachments/ShopProject_4img.png)
 ![1img](Attachments/ShopProject_3img.png)
-![1img](Pasted image 20240124150045.png)
 ### MOBILE VERSION
 ![1img](Attachments/ShopProject_5img.png)
 ![1img](Attachments/ShopProject_6img.png)
