@@ -3,8 +3,9 @@ Website for online  shop with versions for customer account and separate admin p
 Users can view Catalog, read more details about selected product, get it to basket and then make an order with information about delivery. Customers also can like selected product and view them in separate Liked List.
 Admins can edit information about products, categories, view orders and mark them as delivered.
 
-  FRONTEND: Html, css, vanila js, jQuery.
-  BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
+FRONTEND: Html, css, vanila js, jQuery.
+
+BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 
 ![1img](Attachments/ShopProject_1img.png)
 
@@ -12,6 +13,7 @@ Admins can edit information about products, categories, view orders and mark the
 ![1img](Attachments/ShopProject_2img.png)
 
 ### ADMIN PANEL
+
 ![1img](Attachments/ShopProject_4img.png)
 
 
