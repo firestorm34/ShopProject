@@ -10,6 +10,7 @@ BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 ![1img](Attachments/ShopProject_1img.png)
 
 <h3> Adding new product to basket </h3>
+
 ![1img](Attachments/ShopProject_2img.png)
 
 ## ADMIN PANEL
@@ -18,6 +19,7 @@ BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 
 
 <h3> Viewing existing users </h3>
+
 ![1img](Attachments/ShopProject_3img.png)
 
 
@@ -26,4 +28,5 @@ BACKEND: .Net, EntityFramework, MySQL, ASP.NET, MVC, xUnit.
 ![1img](Attachments/ShopProject_5img.png)
 
 <h3>Menu unwrapped</h3>
+
 ![Menu_unwrapped](Attachments/ShopProject_6img.png)
