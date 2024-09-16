@@ -53,11 +53,11 @@ namespace ShopProject.Areas.Admin.Controllers
             var good = await unit.GoodRepository.GetAsync(good_id);
             good.IsArchieved = true;
             await unit.SaveAsync();
-            //if (good !=null)
-            //{
-            //   await unit.GoodRepository.Delete(good.Id);
-            //    await unit.SaveAsync();
-            //}
+            if (good != null)
+            {
+                await unit.GoodRepository.DeleteAsync(good.Id);
+                await unit.SaveAsync();
+            }
             return RedirectToAction("Index", "ManageGoods");
         }
 
@@ -65,10 +65,7 @@ namespace ShopProject.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int good_id)
         {
             Good good = await unit.GoodRepository.GetAsync(good_id);
-            //GoodViewModel model = new GoodViewModel {Id = good.Id, Name = good.Name, 
-            //MainImage = good.MainImage, AmountLeft = good.GoodAtStock.AmountLeft,
-            //ManufacturerId= good.ManufacturerId, CategoryId = good.CategoryId,
-            // Description = good.Description, Price = good.Price, Year = good.Year};
+           
             ViewBag.Manufacturers = await unit.ManufacturerRepository.GetAllAsync();
             ViewBag.Categories = await unit.CategoryRepository.GetAllAsync();
             return View(good);
@@ -77,7 +74,7 @@ namespace ShopProject.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(Good good)
         {
-            // It's needed to upload GoodAtStock for correct presentation
+
 
             unit.GoodRepository.Update(good);
             await unit.SaveAsync();

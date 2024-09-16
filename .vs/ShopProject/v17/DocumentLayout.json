@@ -1,0 +1,161 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\.NET\\ShopProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\js\\detailedgood.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\js\\detailedgood.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\css\\layout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\css\\detailedgood.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\css\\detailedgood.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\wwwroot\\css\\categoriesdropdown.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:wwwroot\\css\\categoriesdropdown.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|c:\\.net\\shopproject\\data\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D34EF137-BED8-4954-A8B1-5FEBEFAB1B39}|ShopProject.csproj|solutionrelative:data\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\Data\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "Data\\GenericRepository.cs",
+              "ToolTip": "C:\\.NET\\ShopProject\\Data\\GenericRepository.cs",
+              "RelativeToolTip": "Data\\GenericRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T11:39:42.277Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-16T09:54:39.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DetailedGood.js",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\js\\DetailedGood.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\DetailedGood.js",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\js\\DetailedGood.js",
+              "RelativeToolTip": "wwwroot\\js\\DetailedGood.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-16T09:54:10.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T09:54:06.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Main.css",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\css\\Main.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Main.css",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\css\\Main.css",
+              "RelativeToolTip": "wwwroot\\css\\Main.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T09:54:05.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Layout.css",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\css\\Layout.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\Layout.css",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\css\\Layout.css",
+              "RelativeToolTip": "wwwroot\\css\\Layout.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T09:54:04.777Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DetailedGood.css",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\css\\DetailedGood.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\DetailedGood.css",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\css\\DetailedGood.css",
+              "RelativeToolTip": "wwwroot\\css\\DetailedGood.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T09:54:03.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoriesDropdown.css",
+              "DocumentMoniker": "C:\\.NET\\ShopProject\\wwwroot\\css\\CategoriesDropdown.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\CategoriesDropdown.css",
+              "ToolTip": "C:\\.NET\\ShopProject\\wwwroot\\css\\CategoriesDropdown.css",
+              "RelativeToolTip": "wwwroot\\css\\CategoriesDropdown.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-16T09:54:01.643Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

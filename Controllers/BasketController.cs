@@ -16,15 +16,11 @@ namespace ShopProject.Controllers
         UnitOfWork unit;
         IServiceScopeFactory scopeFactory;
 
-        //public BasketController(UnitOfWork unit)
-        //{
-        //    this.unit = unit;
-
-        //}
         public BasketController(UnitOfWork unit, IServiceScopeFactory factory)
         {
             this.unit = unit;
             this.scopeFactory = factory;
+            
 
         }
 

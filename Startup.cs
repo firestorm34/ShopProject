@@ -88,11 +88,7 @@ namespace ShopProject
            
             app.UseEndpoints(endpoints =>
             {
-//                endpoints.MapAreaControllerRoute(
-//                name: "admin",
-//                areaName: "admin",
-//                pattern: "admin/{controller=Category}/{action=Index}"
-//);
+
                 endpoints.MapControllerRoute(
                     name: "admin",
                     pattern: "{area:exists}/{controller=Category}/{action=Index}/{id?}");

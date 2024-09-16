@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\basket.svg"
     },
     {
+      "Id": "C:\\.NET\\ShopProject\\wwwroot\\css\\CategoriesDropdown.css",
+      "PackagePath": "staticwebassets\\css\\CategoriesDropdown.css"
+    },
+    {
       "Id": "C:\\.NET\\ShopProject\\wwwroot\\css\\DetailedGood.css",
       "PackagePath": "staticwebassets\\css\\DetailedGood.css"
     },

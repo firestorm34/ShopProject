@@ -44,11 +44,9 @@ namespace ShopProject.Data
 
         public virtual  TEntity Update(TEntity entity)
         {
-
+            
             context.Update(entity);
 
-            //context.Attach(entity);
-            //context.Entry<TEntity>(entity).State = EntityState.Modified;
             return entity;
 
 

@@ -9,7 +9,7 @@ namespace ShopProject.Data
 {
     public class GoodRepository : GenericRepository<Good>, IGoodRepository
     {
-        ShopContext db;
+        private readonly ShopContext db;
         public GoodRepository(ShopContext context) : base(context)
         {
             db = context;
@@ -25,13 +25,6 @@ namespace ShopProject.Data
 
         }
 
-        //public async Task<List<Good>> GetByCategoryId(int categoryid)
-        //{
-
-        //    var goods = await GetAll();
-
-        //    return goods;
-        //}
 
         public async override Task<List<Good>> GetAllAsync()
         {

@@ -18,7 +18,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Attachments\**" />
+    <Content Remove="Attachments\**" />
+    <EmbeddedResource Remove="Attachments\**" />
+    <None Remove="Attachments\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\MainImg.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Readme.md" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +62,10 @@
     <Content Update="wwwroot\css\Main.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\NewFolder\" />
   </ItemGroup>
 
 </Project>

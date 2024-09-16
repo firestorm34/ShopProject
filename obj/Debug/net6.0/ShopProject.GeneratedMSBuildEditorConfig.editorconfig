@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ShopProject
 build_property.RootNamespace = ShopProject
 build_property.ProjectDir = C:\.NET\ShopProject\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -154,10 +156,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/.NET/ShopProject/Views/LikedGood/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGlrZWRHb29kXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/.NET/ShopProject/Views/OldLayoutVIew.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2xkTGF5b3V0Vklldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/.NET/ShopProject/Views/Order/Index.cshtml]

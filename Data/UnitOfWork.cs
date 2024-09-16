@@ -15,16 +15,14 @@ namespace ShopProject.Data
     {
         private ShopContext context;
         private SignInManager<User> signInManager;
-        private UserManager<User> userManager;
         public virtual User CurrentUser {
             get { return context.Users.FirstOrDefault(u => u.UserName == signInManager.Context.User.Identity.Name); }
         }
         public UnitOfWork() {}
-        public UnitOfWork(ShopContext _context, SignInManager<User> _signInManager, UserManager<User> _userManager)
+        public UnitOfWork(ShopContext context, SignInManager<User> signInManager)
         {
-            context = _context;
-            signInManager = _signInManager;
-            userManager = _userManager;
+            this.context = context;
+            this.signInManager = signInManager;
         }
 
         #region Variables for Repositories Interfaces
