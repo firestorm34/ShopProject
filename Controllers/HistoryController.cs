@@ -20,8 +20,8 @@ namespace ShopProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var history = await unit.HistoryRepository.GetByUserId(unit.CurrentUser.Id);
-            var historyElements = unit.HistoryElementRepository.GetAllByHistoryId( history.Id);
+            History history = await unit.HistoryRepository.GetByUserId(unit.CurrentUser.Id);
+            List<HistoryElement> historyElements = unit.HistoryElementRepository.GetAllByHistoryId( history.Id);
             List<Good> Goods = new List<Good>();
             ViewBag.IsLiked = new List<bool>();
             foreach(var historyElement in historyElements)

@@ -39,6 +39,7 @@ namespace ShopProject.Controllers
             return View(Goods);
         }
 
+        #region Like/dislike from "/Home"
         public async Task<IActionResult> LikeFromIndexHome(int good_id, string ControllerName, string ActionName)
         {
             await Like(good_id);
@@ -50,7 +51,9 @@ namespace ShopProject.Controllers
             await Dislike(good_id);
             return RedirectToAction(ActionName, ControllerName);
         }
+        #endregion
 
+        #region Like/dislike from "/LikedGoods"
         public async Task<IActionResult> LikeFromIndexLikedGood(int good_id)
         {
            await Like(good_id);
@@ -62,7 +65,9 @@ namespace ShopProject.Controllers
            await Dislike(good_id);
             return RedirectToAction("Index", "LikedGood");
         }
+        #endregion
 
+        #region Like/dislike from "/Good"
         public async Task<IActionResult> LikeFromIndexGood(int good_id)
         {
             await Like(good_id);
@@ -88,7 +93,9 @@ namespace ShopProject.Controllers
             await Dislike(good_id);
             return RedirectToAction("Detailed", "Good", new { good_id = good_id });
         }
+        #endregion
 
+        #region Like/dislike from "/History"
         public async Task<IActionResult> LikeFromIndexHistory(int good_id)
         {
             await Like(good_id);
@@ -100,6 +107,8 @@ namespace ShopProject.Controllers
             await Dislike(good_id);
             return RedirectToAction("Index", "History");
         }
+        #endregion
+
 
         public async Task Like(int good_id)
         {

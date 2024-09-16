@@ -66,7 +66,6 @@ namespace ShopProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
-            Changes = "";
             if (ModelState.IsValid)
             {
                 User user = await userManager.FindByIdAsync(model.Id.ToString());
@@ -79,20 +78,20 @@ namespace ShopProject.Controllers
                     user.City = model.City;
                     if(model.IsPasswordChanged == true)
                     {
-                    IdentityResult pwd_change =
-                    await userManager.ChangePasswordAsync(user, model.Password, model.NewPassword);
-                        if (!pwd_change.Succeeded)
-                        {
-                            ModelState.AddModelError("", "Old password is incorrect!");
-                            return View("Edit",model);
-                        }
-                        Changes = "<p> Password was successfully changed </p>";
+                        IdentityResult pwd_change =
+                        await userManager.ChangePasswordAsync(user, model.Password, model.NewPassword);
+                            if (!pwd_change.Succeeded)
+                            {
+                                ModelState.AddModelError("", "Old password is incorrect!");
+                                return View("Edit",model);
+                            }
+                            ViewBag.Changes = "<p> Password was successfully changed </p>";
                     }
 
                     var result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        Changes += " <p> All changed was saved </p>";
+                        ViewBag.Changes += " <p> All changed was saved </p>";
                         return RedirectToAction("Index", "Account") ;
                     }
                     else
@@ -122,11 +121,11 @@ namespace ShopProject.Controllers
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email};
-                // добавляем пользователя
+
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
+
                     await signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -134,26 +133,16 @@ namespace ShopProject.Controllers
                 {
                     foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError("famee", error.Description);
+                        ModelState.AddModelError("", error.Description);
                     }
                 }
             }
             return View("Register",model);
         }
 
-        //For reseting a new password
-        //var user = await UserManager.FindByIdAsync(id);
-        //var token = await UserManager.GeneratePasswordResetTokenAsync(user);
-        //var result = await UserManager.ResetPasswordAsync(user, token, "MyN3wP@ssw0rd");
-
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
-            var param = "PARAM1";
-            logger.Warning("I send login with Serilog {param}",param );
-            
-            
-            logger.Error("ERROR");
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
@@ -181,7 +170,6 @@ namespace ShopProject.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            // удаляем аутентификационные куки
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }

@@ -82,69 +82,6 @@ namespace ShopProject.Areas.Admin.Controllers
         }
 
 
-        //[HttpGet]
-        //public IActionResult Login()
-        //{
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Login(LoginModel model)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user  = await unit.UserRepository.TryLogin(model);
-        //        if (user != null)
-        //        {
-        //            Authenticate(user);
-        //            return RedirectToAction("Index", "Home");
-
-        //        }
-        //        ModelState.AddModelError("", "Wrong e-mail or password");
-        //    }
-        //    return View(model);
-        //}
-
-
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Register(User user)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var u = await unit.UserRepository.CheckEmail(user.Email);
-        //        if (u == null)
-        //        {
-        //            await unit.UserRepository.Add(user);
-        //            unit.Save();
-        //            Authenticate(user);
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        ModelState.AddModelError("", "User with that e-mail already exists!");
-        //    }
-        //    return View(user);
-        //}
-
-        //public void Authenticate(User user)
-        //{
-        //    unit.CurrentUser = user;
-
-        //}
-
-        //public IActionResult Logout()
-        //{
-        //    unit.CurrentUser = null;
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-
 
     }
 }

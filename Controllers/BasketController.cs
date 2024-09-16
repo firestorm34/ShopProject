@@ -60,7 +60,7 @@ namespace ShopProject.Controllers
             }
             return BadRequest("Basket with that id doesn't exist");
         }
-
+       [NonAction]
        public async Task<BasketViewModel> GetBasketViewModelAsync(Basket basket)
         {
             BasketViewModel model = new BasketViewModel();
@@ -94,7 +94,7 @@ namespace ShopProject.Controllers
             return model;
 
         }
-
+        [NonAction]
         public async Task RecalculateTotalSum(int basketid)
         {
             using (var scope = scopeFactory.CreateScope())

@@ -27,22 +27,21 @@ namespace ShopProject.Controllers
         {
             
             List<Good> goods = await unit.GoodRepository.GetAllAsync();
-            List<Category> start_categories = unit.CategoryRepository.GetByParentCategory(0);
+            List<Category> main_categories = unit.CategoryRepository.GetByParentCategory(0);
             List<Good> neededgoods = goods.Where(g => g.CategoryId == 0).ToList();
             List<Category> child_categories = new List<Category>();
-            if (start_categories != null)
+            if (main_categories != null) 
             {
                 
-                foreach (Category cat in start_categories) {
+                foreach (Category cat in main_categories) {
                     List<Category> child_cat = unit.CategoryRepository.GetChildCategories(cat.Id);
                     if (child_cat != null) { 
                         child_categories.Concat(child_cat);
                     }
                 }
-                IEnumerable<Category> all_child_categories = start_categories.Concat(child_categories);
+                IEnumerable<Category> all_child_categories = main_categories.Concat(child_categories);
 
                 neededgoods = goods.Where(g => all_child_categories.Contains(g.Category)).ToList();
-                int j = 1;
             }
             if (neededgoods.Count() == 0)
             {
@@ -62,7 +61,6 @@ namespace ShopProject.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

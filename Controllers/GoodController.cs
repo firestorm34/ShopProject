@@ -13,24 +13,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ShopProject.Controllers
 {
+    [Controller]
     public class GoodController : Controller
     {
         UnitOfWork unit;
         UserManager<User> userManager;
-        SignInManager<User> signInManager;
         IServiceScopeFactory scopeFactory;
-        public GoodController(UnitOfWork unit, UserManager<User> userManager, SignInManager<User> signInManager)
+        public GoodController(UnitOfWork unit, UserManager<User> userManager)
         {
             this.unit = unit;
             this.userManager = userManager;
-            this.signInManager = signInManager;
-
-          
         }
 
         public async Task<IActionResult> Index(int category_id)
         {
-            
             if(category_id == 0)
             {
                 return BadRequest("Category 0 doesnt exist!");
@@ -38,12 +34,12 @@ namespace ShopProject.Controllers
             IEnumerable<Good> neededgoods;
             Category category =  await unit.CategoryRepository.GetAsync(category_id);
             List<Good> goods = await unit.GoodRepository.GetAllAsync();
-            List<Category> categories = unit.CategoryRepository.GetChildCategories(category_id);
+            List<Category> childCategories = unit.CategoryRepository.GetChildCategories(category_id);
 
-            if (categories != null)
+            if (childCategories != null)
             {
-                categories.Add(category);
-                neededgoods = goods.Where(g => categories.Contains(g.Category));
+                childCategories.Add(category);
+                neededgoods = goods.Where(g => childCategories.Contains(g.Category));
             }
             else
             {
