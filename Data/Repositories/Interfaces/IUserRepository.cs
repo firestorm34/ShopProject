@@ -11,17 +11,7 @@ namespace ShopProject.Data.Interfaces
     {
         public Task<User> GetById(int id);
        
-       
-        public User GetByUserName(string Name);
-        public  Task<User> CheckEmail(string Email);
 
-        /// <summary>
-        /// Trying to find user with defined password and Email
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns> User, that was found or null</returns>
-        /// <typeparam name="model">The type used for the primary key for the user.</typeparam>
-        public Task<User> TryLogin(LoginModel model);
 
     }
 }

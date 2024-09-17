@@ -17,14 +17,12 @@ namespace ShopProject.Areas.Admin.Controllers
     {
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
-        private readonly RoleManager<Role> roleManager;
         private readonly UnitOfWork unit;
         public AdminAccountController(UserManager<User> userManager, SignInManager<User> signInManager,
-            RoleManager<Role> roleManager, UnitOfWork unit)
+            UnitOfWork unit)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.roleManager = roleManager;
             this.unit = unit;
         }
         [HttpGet]
@@ -45,15 +43,15 @@ namespace ShopProject.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = unit.UserRepository.GetByUserName(model.Email);
+                    User user = await userManager.FindByEmailAsync(model.Email);  
                     if(user is null)
                     {
                         ModelState.AddModelError("", "Неправильный логин и (или) пароль");
                         return View(model);
                     }
 
-                    var roles = await userManager.GetRolesAsync(user);
-                    if (roles.Contains("Admin"))
+                    IList<string> roleNames = await userManager.GetRolesAsync(user);
+                    if (roleNames.Contains("Admin"))
                     {
                         
                         var result =

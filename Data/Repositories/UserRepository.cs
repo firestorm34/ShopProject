@@ -23,21 +23,6 @@ namespace ShopProject.Data
             return  context.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public User GetByUserName(string Name)
-        {
-            return context.Users.FirstOrDefault(u => u.UserName == Name);
-        }
 
-
-
-        public async Task<User> TryLogin(LoginModel model)
-        {
-            return await context.Users.FirstOrDefaultAsync(u => u.Email == model.Email /* && u.Password == model.Password*/);
-        }
-
-        public async Task<User> CheckEmail( string Email)
-        {
-            return await context.Users.FirstOrDefaultAsync(u => u.Email == Email);
-        }
     }
 }

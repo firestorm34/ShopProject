@@ -16,13 +16,9 @@ namespace ShopProject.Areas.Admin.Controllers
     public class ManageGoodsController : Controller
     {
         UnitOfWork unit;
-        UserManager<User> userManager;
-        SignInManager<User> signInManager;
-        public ManageGoodsController(UnitOfWork unit, UserManager<User> userManager, SignInManager<User> signInManager)
+        public ManageGoodsController(UnitOfWork unit)
         {
             this.unit = unit;
-            this.userManager = userManager;
-            this.signInManager = signInManager;
         }
         public async Task<IActionResult> Index()
         {

@@ -66,6 +66,7 @@ namespace ShopProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
+            Changes = "";
             if (ModelState.IsValid)
             {
                 User user = await userManager.FindByIdAsync(model.Id.ToString());
@@ -85,13 +86,13 @@ namespace ShopProject.Controllers
                                 ModelState.AddModelError("", "Old password is incorrect!");
                                 return View("Edit",model);
                             }
-                            ViewBag.Changes = "<p> Password was successfully changed </p>";
+                            Changes = "<p> Password was successfully changed </p>";
                     }
 
                     var result = await userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
-                        ViewBag.Changes += " <p> All changed was saved </p>";
+                        Changes += " <p> All changed was saved </p>";
                         return RedirectToAction("Index", "Account") ;
                     }
                     else
